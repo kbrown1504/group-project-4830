@@ -31,7 +31,7 @@ public class Home extends HttpServlet {
 		response.setContentType("text/html");
 		
 		//https://stackoverflow.com/questions/38239554/java-web-servlet-writing-plain-text-on-an-existing-html-template-file
-		request.setAttribute("test", "<ul><li>It is working</li></ul>");
+		request.setAttribute("pageTitle", "Home");
 		RequestDispatcher view = request.getRequestDispatcher("home.jsp");
 		view.forward(request, response);
 		
