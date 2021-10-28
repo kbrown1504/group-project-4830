@@ -18,6 +18,7 @@ public class BookListing
 		info = inf;
 	}
 	
+	//Create mySQL statement from object
 	public PreparedStatement create(Connection con) throws SQLException
 	{
 		PreparedStatement temp = con.prepareStatement(" INSERT INTO BookListing ( ID, Title, Author, ISBN, Price, Seller, Condition"
@@ -25,6 +26,13 @@ public class BookListing
 				+ " ," + condition + " ," + info + ")");
 		return temp;
 	}
+	
+	//Return some kind of object that is html friendly format of data fields of this.object
+	public String getHTML()
+	{
+		String temp;
+		return temp;
+	}	
 	
 	//Setter and getter methods for all values
 	public int getID()

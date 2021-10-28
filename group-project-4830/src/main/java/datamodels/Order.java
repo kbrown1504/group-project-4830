@@ -14,12 +14,20 @@ public class Order {
 		shippingAddress = sh;
 	}
 	
+	//Create mySQL statement from object
 	public PreparedStatement create(Connection con) throws SQLException
 	{
 		PreparedStatement temp = con.prepareStatement(" INSERT INTO Orders ( ID, BookID, SellerID, BuyerID, ShippingAddress) "
 				+ "values (default, " + bookID + " ," + sellerID + " ," + buyerID + " ," + shippingAddress + ")");
 		return temp;
 	}
+	
+	//Return some kind of object that is html friendly format of data fields of this.object
+	public String getHTML()
+	{
+		String temp;
+		return temp;
+	}	
 	
 	//Setter and getter methods for all values
 	public int getID()

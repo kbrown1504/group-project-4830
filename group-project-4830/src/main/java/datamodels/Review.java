@@ -14,10 +14,18 @@ public class Review {
 		reviewText = rev;
 	}
 	
+	//Create mySQL statement from object
 	public PreparedStatement create(Connection con) throws SQLException
 	{
 		PreparedStatement temp = con.prepareStatement(" INSERT INTO Reviews ( ID, SellerID, BuyerID, Rating, ReviewText) "
 				+ "values (default, " + sellerID + " ," + buyerID + " ," + rating + " ," + reviewText + ")");
+		return temp;
+	}
+
+	//Return some kind of object that is html friendly format of data fields of this.object
+	public String getHTML()
+	{
+		String temp;
 		return temp;
 	}
 
