@@ -30,8 +30,21 @@ public class BookListing
 	//Return some kind of object that is html friendly format of data fields of this.object
 	public String getHTML()
 	{
-		String temp;
-		return temp;
+		String htmlStr = String.format(
+				"<div style=\"display:flex;position:relative;padding:10px;"
+				+ "border-radius:20px;box-shadow: 5px 5px 3px #aaaaaa;"
+				+ "border: 1px solid #aaaaaa\">"
+				+ "<img src=%s height=\"%s\">"
+				+ "<div style=\"display:inline-block;padding-left:10px;\">"
+				+ "<h2>%s</h2>"
+				+ "<h2>$%.02f</h2>"
+				+ "<h3>Author: %s</h3>"
+				+ "<h3>ISBN: %.0f</h3>"
+				+ "</div>"
+				+ "</div>",
+				"https://cdn-icons-png.flaticon.com/512/224/224641.png", "200", title, price, author, isbn
+				);
+		return htmlStr;
 	}	
 	
 	//Setter and getter methods for all values
