@@ -10,16 +10,18 @@
 		.appbar {
 			background:#00004e;
 			display:table;
+			height: 90px;
 			width:100%;
 			position:absolute;
 			top:0;
 			left:0;
 			box-shadow: 0px 5px 3px #aaaaaa;
-			padding-left:10px;
+			padding:0px;
 			
 		}
 		.search {
 			width:60%;
+			margin-left:10px;
 		}
 		.nav-button{
 			height:100%;
@@ -29,12 +31,17 @@
 			padding-right:20px;
 			
 		}
+		.window {
+			position:relative;
+			margin-top: 120px;
+			width:100%;
+		}
 	</style>
 </head>
 
 <body>
-	<div class="appbar">
-		<h1 style="color:#ffffff">BookWorms - ${requestScope["pageTitle"]}</h1>
+	<nav class="appbar">
+		<h1 style="color:#ffffff; margin:10px;">BookWorms - ${requestScope["pageTitle"]}</h1>
 		<form>
 			<input class=search type="text" name="search" placeholder="Search for a book...">
 			<input type=submit value=Search name=submit>
@@ -43,6 +50,12 @@
 			<button onclick="window.location.href='home'" style="height:50px;">Home</button>
 			<button style="height:50px;">Profile</button>
 		</div>
+	</nav>
+	<div class="window">
+		<h2>Welcome to BookWorms!</h2>
+		<hr>
+		<h2>New Listings</h2>
+		${requestScope["books"]}
 	</div>
 </body>
 
