@@ -22,11 +22,15 @@ public class Account
 		return temp;
 	}
 	
-	//Return some kind of object that is html friendly format of data fields of this.object
-	public String getHTML()
+	//No getHTML() for Account because of login security
+	
+	//Special login method
+	public String login(String p)
 	{
-		String temp;
-		return temp;
+		if (p == password)
+			return "Accepted html/statement push";
+		else
+			return "Invalid password html/push";
 	}
 	
 	//Setter and getter methods for all values

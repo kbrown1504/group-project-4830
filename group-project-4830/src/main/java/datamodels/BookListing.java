@@ -30,7 +30,7 @@ public class BookListing
 	//Return some kind of object that is html friendly format of data fields of this.object
 	public String getHTML()
 	{
-		String temp;
+		String temp = "HTML or itemized return of Account object";
 		return temp;
 	}	
 	
