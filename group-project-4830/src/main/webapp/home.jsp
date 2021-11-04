@@ -34,7 +34,9 @@
 		.window {
 			position:relative;
 			margin-top: 120px;
-			width:100%;
+			margin-left: auto;
+			margin-right:auto;
+			width:60%;
 		}
 	</style>
 </head>
