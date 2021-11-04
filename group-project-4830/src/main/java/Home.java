@@ -37,7 +37,7 @@ public class Home extends HttpServlet {
 		
 		BookListing test = new BookListing(0, "test title", "auth", 101, 25.00, 0, 1, "test info");
 		
-		request.setAttribute("books", test.getHTML());
+		request.setAttribute("books", test.getHTML() + test.getHTML() + test.getHTML());
 		
 		RequestDispatcher view = request.getRequestDispatcher("home.jsp");
 		view.forward(request, response);

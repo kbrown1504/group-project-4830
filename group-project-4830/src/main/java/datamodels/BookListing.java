@@ -31,7 +31,7 @@ public class BookListing extends DataModel
 	public String getHTML()
 	{
 		String htmlStr = String.format(
-				"<div style=\"display:flex;position:relative;padding:10px;"
+				"<div style=\"display:flex;position:relative;padding:10px;margin-bottom:10px;"
 				+ "border-radius:20px;box-shadow: 5px 5px 3px #aaaaaa;"
 				+ "border: 1px solid #aaaaaa\">"
 				+ "<img src=%s height=\"%s\">"
