@@ -27,8 +27,15 @@ public class BookListing extends DataModel
 		return temp;
 	}
 	
-	//Return some kind of object that is html friendly format of data fields of this.object
+	//Return a detailed html item of book
 	public String getHTML()
+	{
+		String temp = "HTML or itemized return of BookListing object";
+		return temp;
+		
+	}
+	//Return a shorter card display friend html version of object
+	public String getCardHTML()
 	{
 		String htmlStr = String.format(
 				"<div style=\"display:flex;position:relative;padding:10px;margin-bottom:10px;"
