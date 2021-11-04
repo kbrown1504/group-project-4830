@@ -1,9 +1,10 @@
 package datamodels;
 import java.sql.*;
 
-public class Review {
+public class Review extends DataModel
+{
 
-	private int id, sellerID, buyerID, rating;
+	private int sellerID, buyerID, rating;
 	private String reviewText;
 	public Review(int i, int s, int b, int r, String rev)
 	{
@@ -25,16 +26,23 @@ public class Review {
 	//Return some kind of object that is html friendly format of data fields of this.object
 	public String getHTML()
 	{
-		String temp = "HTML or itemized return of Account object";
+		String temp = "HTML or itemized return of Review object";
 		return temp;
 	}
-
-	//Setter and getter methods for all values
-	public int getID()
+	
+	//Get search statement to pull seller
+	public PreparedStatement getSeller(Connection con) throws SQLException
 	{
-		return id;
+		PreparedStatement temp = con.prepareStatement(" SELECT * FROM Account WHERE ID = \"" + sellerID + "\";")	;
+		return temp;
 	}
-	//No setter method as MySQL controls id
+	
+	//Get search statement to pull seller
+	public PreparedStatement getBuyer(Connection con) throws SQLException
+	{
+		PreparedStatement temp = con.prepareStatement(" SELECT * FROM Account WHERE ID = \"" + buyerID + "\";")	;
+		return temp;
+	}		
 	
 	public int getSellerID()
 	{
