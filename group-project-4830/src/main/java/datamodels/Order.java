@@ -1,9 +1,10 @@
 package datamodels;
 import java.sql.*;
 
-public class Order {
+public class Order extends DataModel
+{
 	
-	private int id, bookID, sellerID, buyerID;
+	private int bookID, sellerID, buyerID;
 	private String shippingAddress;
 	public Order(int i, int b, int s, int bu, String sh)
 	{
@@ -25,16 +26,23 @@ public class Order {
 	//Return some kind of object that is html friendly format of data fields of this.object
 	public String getHTML()
 	{
-		String temp;
+		String temp = "HTML or itemized return of Order object";
 		return temp;
 	}	
 	
-	//Setter and getter methods for all values
-	public int getID()
+	//Get search statement to pull seller
+	public PreparedStatement getSeller(Connection con) throws SQLException
 	{
-		return id;
+		PreparedStatement temp = con.prepareStatement(" SELECT * FROM Account WHERE ID = \"" + sellerID + "\";")	;
+		return temp;
 	}
-	//No setter because value controlled by MySQL
+
+	//Get search statement to pull Book
+	public PreparedStatement getBook(Connection con) throws SQLException
+	{
+		PreparedStatement temp = con.prepareStatement(" SELECT * FROM BookListing WHERE ID = \"" + id + "\";")	;
+		return temp;		
+	}
 	
 	public int getbookID()
 	{

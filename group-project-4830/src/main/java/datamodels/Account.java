@@ -1,10 +1,9 @@
 package datamodels;
 import java.sql.*;
 
-public class Account 
+public class Account extends DataModel
 {
 	//Appropriate storage fields for MySQL fields
-	private int id;
 	private String username, email, password;
 	public Account(int i, String us, String em, String pw)
 	{
@@ -22,19 +21,17 @@ public class Account
 		return temp;
 	}
 	
-	//Return some kind of object that is html friendly format of data fields of this.object
-	public String getHTML()
+	//No getHTML() for Account because of login security
+	
+	//Special login method
+	public String login(String p)
 	{
-		String temp;
-		return temp;
+		if (p == password)
+			return "Accepted html/statement push";
+		else
+			return "Invalid password html/push";
 	}
 	
-	//Setter and getter methods for all values
-	public int getID()
-	{
-		return id;
-	}
-	//No set id as it is a value controlled by MySQL
 	
 	public String getUsername()
 	{

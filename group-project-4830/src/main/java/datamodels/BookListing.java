@@ -1,9 +1,9 @@
 package datamodels;
 import java.sql.*;
 
-public class BookListing 
+public class BookListing extends DataModel
 {
-	private int id,sellerID,condition;
+	private int sellerID,condition;
 	private String title, author,info;
 	private double isbn,price;
 	public BookListing(int i, String titl, String auth, double ISB, double pric, int s, int cond, String inf)
@@ -23,12 +23,19 @@ public class BookListing
 	{
 		PreparedStatement temp = con.prepareStatement(" INSERT INTO BookListing ( ID, Title, Author, ISBN, Price, Seller, Condition"
 				+ ", AddInfo) values (default, " + title + " ," + author + " ," + isbn + " ," + price + " ," + sellerID 
-				+ " ," + condition + " ," + info + ")");
+				+ " ," + condition + " ," + info + ");");
 		return temp;
 	}
 	
-	//Return some kind of object that is html friendly format of data fields of this.object
+	//Return a detailed html item of book
 	public String getHTML()
+	{
+		String temp = "HTML or itemized return of BookListing object";
+		return temp;
+		
+	}
+	//Return a shorter card display friend html version of object
+	public String getCardHTML()
 	{
 		String htmlStr = String.format(
 				"<div style=\"display:flex;position:relative;padding:10px;margin-bottom:10px;"
@@ -45,14 +52,14 @@ public class BookListing
 				"https://cdn-icons-png.flaticon.com/512/224/224641.png", "200", title, price, author, isbn
 				);
 		return htmlStr;
-	}	
-	
-	//Setter and getter methods for all values
-	public int getID()
-	{
-		return id;
 	}
-	//No setter as MySQL controlled value
+	
+	//Get search statement to pull seller
+	public PreparedStatement getSeller(Connection con) throws SQLException
+	{
+		PreparedStatement temp = con.prepareStatement(" SELECT * FROM Account WHERE ID = \"" + sellerID + "\";")	;
+		return temp;
+	}
 	
 	public String getTitle()
 	{
