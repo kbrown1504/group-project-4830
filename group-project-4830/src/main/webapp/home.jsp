@@ -21,7 +21,12 @@
 		}
 		.search {
 			width:60%;
+		}
+		.dropdown {
 			margin-left:10px;
+		}
+		.forms {
+			display:vertical;
 		}
 		.nav-button{
 			height:100%;
@@ -44,10 +49,19 @@
 <body>
 	<nav class="appbar">
 		<h1 style="color:#ffffff; margin:10px;">BookWorms - ${requestScope["pageTitle"]}</h1>
-		<form>
-			<input class=search type="text" name="search" placeholder="Search for a book...">
+		<div class="forms">
+			<form action="search" method="POST">
+			<select class="dropdown" name="categories" id="categories">
+				<option value="TITLE">Title</option>
+				<option value="AUTHOR">Author</option>
+				<option value="ISBN">ISBN</option>
+			</select>
+			<input class=search type="text" name="search" placeholder="Search for a book by category...">
 			<input type=submit value=Search name=submit>
-		</form>
+			<input type="submit" value="Advanced Search" formaction="advancedSearch">
+			</form>
+			
+		</div>
 		<div class=nav-button>
 			<button onclick="window.location.href='home'" style="height:50px;">Home</button>
 			<button style="height:50px;">Profile</button>
