@@ -32,7 +32,7 @@ public class DBConnection {
 		getDBConnection();
 	}
 	
-	public boolean insert(Object obj) {
+	public boolean insert(Object obj, String tableName) {
 		//TODO: Implement
 		return false;
 	}
