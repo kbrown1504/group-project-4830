@@ -52,11 +52,11 @@
 		<div class="forms">
 			<form action="search" method="POST">
 			<select class="dropdown" name="categories" id="categories">
-				<option value="TITLE">Title</option>
-				<option value="AUTHOR">Author</option>
-				<option value="ISBN">ISBN</option>
+				<option value="TITLE" ${requestScope["titleSelected"]}>Title</option>
+				<option value="AUTHOR" ${requestScope["authorSelected"]}>Author</option>
+				<option value="ISBN" ${requestScope["isbnSelected"]}>ISBN</option>
 			</select>
-			<input class=search type="text" name="search" placeholder="Search for a book by category...">
+			<input class=search type="text" name="search" placeholder="Search for a book by category..." value="${requestScope["search"]}">
 			<input type=submit value=Search name=submit>
 			<input type="submit" value="Advanced Search" formaction="advancedSearch">
 			</form>
@@ -68,10 +68,8 @@
 		</div>
 	</nav>
 	<div class="window">
-		<h2>Welcome to BookWorms!</h2>
+		<h2>Search Results</h2>
 		<hr>
-		<h2>New Listings</h2>
-		${requestScope["books"]}
 	</div>
 </body>
 
