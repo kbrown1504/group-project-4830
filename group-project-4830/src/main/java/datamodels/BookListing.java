@@ -43,13 +43,13 @@ public class BookListing extends DataModel
 				+ "border: 1px solid #aaaaaa\">"
 				+ "<img src=%s height=\"%s\">"
 				+ "<div style=\"display:inline-block;padding-left:10px;\">"
-				+ "<h2>%s</h2>"
+				+ "<a style=\"font-size:1.5rem;font-weight:bold;\" href=\"book?id=%d\">%s</a>"
 				+ "<h2>$%.02f</h2>"
 				+ "<h3>Author: %s</h3>"
 				+ "<h3>ISBN: %.0f</h3>"
 				+ "</div>"
 				+ "</div>",
-				"https://cdn-icons-png.flaticon.com/512/224/224641.png", "200", title, price, author, isbn
+				"https://cdn-icons-png.flaticon.com/512/224/224641.png", "200", id, title, price, author, isbn
 				);
 		return htmlStr;
 	}
