@@ -70,6 +70,7 @@
 	<div class="window">
 		<h2>Search Results</h2>
 		<hr>
+		${requestScope["searchResults"]}
 	</div>
 </body>
 

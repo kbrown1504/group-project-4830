@@ -69,6 +69,14 @@
 	</nav>
 	<div class="window">
 		<h2>Welcome to BookWorms!</h2>
+		<p>
+			BookWorms is a web-based textbook sale platform designed for students by students.
+			For many college students, textbooks can be a large expense. Especially when those
+			books are only used for a single semester. BookWorms seeks to connect students
+			who want to sell old textbooks with students looking for a cheaper alternative to buying textbooks
+			from a retailer. To get started, search by title, author, or ISBN in the search bar
+			above!
+		</p>
 		<hr>
 		<h2>New Listings</h2>
 		${requestScope["books"]}
