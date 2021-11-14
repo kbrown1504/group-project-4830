@@ -51,7 +51,7 @@ public class AdvancedSearch extends HttpServlet {
 		PreparedStatement preparedStatement = null;
 		try
 		{
-			DBConnection.DBConnection(getServletContext());
+			DBConnection.getDBConnection(getServletContext());
 			connection = DBConnection.connection;
 			
 			ArrayList<String> input = new ArrayList<String>();
