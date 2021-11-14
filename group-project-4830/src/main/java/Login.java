@@ -1,76 +1,67 @@
-
-
-import java.io.IOException;
+import datamodels.Account;
+import datamodels.DataParser;
+import java.util.ArrayList;
+import java.io.*;
 import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import javax.servlet.ServletException;
+ 
+import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 
-/**
- * Servlet implementation class Login
- */
-@WebServlet("/Login")
+import datamodels.Account;
+ 
+@WebServlet("/login")
 public class Login extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-	
-	public boolean validateUserLogin(String uname, String pwd)
-	{
-		boolean flag = false;
-		Connection con = null;
-		try{
-			DBConnection.getDBConnection(getServletContext());
-			con = DBConnection.connection;
-			if(con != null){
-				Statement stat = con.createStatement();
-				String qry = "SELECT * FROM Account WHERE Username = '"+uname+"' AND Password = '"+pwd+"' ";
-				ResultSet rs = stat.executeQuery(qry);
-				if(rs.next()){
-					flag = true;
-				}
-			}
-		}catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			if(con != null){
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return flag;
-	}
-	
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    private static final long serialVersionUID = 1L;
+ 
     public Login() {
         super();
-        // TODO Auto-generated constructor stub
     }
+ 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+         
+         
+        try {
+        	Connection connection = null;
+    		DBConnection.getDBConnection(getServletContext());
+            connection = DBConnection.connection;
+    		String sql = "SELECT * FROM Account WHERE Username = ? and Password = ?";
+    		PreparedStatement statement = connection.prepareStatement(sql);
+    		statement.setString(1, username);
+    		statement.setString(2, password);
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+    		ResultSet result = statement.executeQuery();
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+    		Account user = null;
 
+    		if (result.next()) {
+    			ArrayList<Account> pUser = DataParser.parseAccount(result);
+    			user = pUser.get(0);
+    		}
+
+    		connection.close();
+            String destPage = "login.jsp";
+             
+            if (user != null) {
+                HttpSession session = request.getSession();
+                session.setAttribute("user", user);
+                destPage = "home.jsp";
+            } else {
+                String message = "Invalid email/password";
+                request.setAttribute("message", message);
+            }
+             
+            RequestDispatcher dispatcher = request.getRequestDispatcher(destPage);
+            dispatcher.forward(request, response);
+             
+        } catch (SQLException ex) {
+            throw new ServletException(ex);
+        }
+    }
 }
