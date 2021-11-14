@@ -20,7 +20,7 @@ public class DataParser {
 		ArrayList<BookListing> temp = new ArrayList<BookListing>();
 		while (res.next())
 		{
-			BookListing t1 = new BookListing(res.getInt("ID"), res.getString("Title"), res.getString("Author"), 
+			BookListing t1 = new BookListing(res.getInt("ID"), res.getInt("OrderID"), res.getString("Title"), res.getString("Author"), 
 					res.getDouble("ISBN"), res.getDouble("Price"), res.getInt("Seller"), res.getInt("Condition"),
 					res.getString("AddInfo)"));
 			temp.add(t1);
@@ -33,7 +33,7 @@ public class DataParser {
 		ArrayList<Order> temp = new ArrayList<Order>();
 		while (res.next())
 		{
-			Order t1 = new Order(res.getInt("ID"), res.getInt("BookID"), res.getInt("BuyerID"),
+			Order t1 = new Order(res.getInt("ID"), res.getInt("BuyerID"),
 					res.getString("ShippingAddress"));
 			temp.add(t1);
 		}

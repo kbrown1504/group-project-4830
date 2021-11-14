@@ -64,7 +64,7 @@ public class Search extends HttpServlet {
 			break;
 		}
 		
-		BookListing test = new BookListing(0, "test title", "auth", 101, 25.00, 0, 1, "test info");
+		BookListing test = new BookListing(0, -1, "test title", "auth", 101, 25.00, 0, 1, "test info");
 		
 		request.setAttribute("searchResults", test.getCardHTML() + test.getCardHTML() + test.getCardHTML());
 		

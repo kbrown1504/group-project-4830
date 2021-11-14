@@ -4,12 +4,11 @@ import java.sql.*;
 public class Order extends DataModel
 {
 	
-	private int bookID, buyerID;
+	private int buyerID;
 	private String shippingAddress;
-	public Order(int i, int b, int bu, String sh)
+	public Order(int i, int bu, String sh)
 	{
 		id = i;
-		bookID = b;
 		buyerID = bu;
 		shippingAddress = sh;
 	}
@@ -17,8 +16,8 @@ public class Order extends DataModel
 	//Create mySQL statement from object
 	public PreparedStatement create(Connection con) throws SQLException
 	{
-		PreparedStatement temp = con.prepareStatement(" INSERT INTO Orders ( ID, BookID, BuyerID, ShippingAddress) "
-				+ "values (default, " + bookID + " ," + buyerID + " ," + shippingAddress + ")");
+		PreparedStatement temp = con.prepareStatement(" INSERT INTO Orders ( ID, BuyerID, ShippingAddress) "
+				+ "values (default, " + buyerID + " ," + shippingAddress + ")");
 		return temp;
 	}
 	
@@ -34,16 +33,6 @@ public class Order extends DataModel
 	{
 		PreparedStatement temp = con.prepareStatement(" SELECT * FROM BookListing WHERE ID = \"" + id + "\";")	;
 		return temp;		
-	}
-	
-	public int getbookID()
-	{
-		return bookID;
-	}
-	
-	public void setBookID(int i)
-	{
-		bookID = i;
 	}
 	
 	public int getBuyerID()
