@@ -26,7 +26,7 @@ public class Account extends DataModel
 	//Special login method
 	public String login(String p)
 	{
-		if (p == password)
+		if (p.contentEquals(password))
 			return "Accepted html/statement push";
 		else
 			return "Invalid password html/push";

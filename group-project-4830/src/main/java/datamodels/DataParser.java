@@ -33,7 +33,7 @@ public class DataParser {
 		ArrayList<Order> temp = new ArrayList<Order>();
 		while (res.next())
 		{
-			Order t1 = new Order(res.getInt("ID"), res.getInt("BookID"), res.getInt("SellerID"), res.getInt("BuyerID"),
+			Order t1 = new Order(res.getInt("ID"), res.getInt("BookID"), res.getInt("BuyerID"),
 					res.getString("ShippingAddress"));
 			temp.add(t1);
 		}
