@@ -35,7 +35,7 @@ public class Home extends HttpServlet {
 		//https://stackoverflow.com/questions/38239554/java-web-servlet-writing-plain-text-on-an-existing-html-template-file
 		request.setAttribute("pageTitle", "Home");
 		
-		BookListing test = new BookListing(0, "test title", "auth", 101, 25.00, 0, 1, "test info");
+		BookListing test = new BookListing(0, -1, "test title", "auth", 101, 25.00, 0, 1, "test info");
 		
 		request.setAttribute("books", test.getCardHTML() + test.getCardHTML() + test.getCardHTML());
 		

@@ -3,12 +3,13 @@ import java.sql.*;
 
 public class BookListing extends DataModel
 {
-	private int sellerID,condition;
+	private int sellerID,condition, orderID;
 	private String title, author,info;
 	private double isbn,price;
-	public BookListing(int i, String titl, String auth, double ISB, double pric, int s, int cond, String inf)
+	public BookListing(int i, int oid, String titl, String auth, double ISB, double pric, int s, int cond, String inf)
 	{
 		id = i;
+		orderID = oid;
 		title = titl;
 		author = auth;
 		isbn = ISB;
@@ -21,8 +22,8 @@ public class BookListing extends DataModel
 	//Create mySQL statement from object
 	public PreparedStatement create(Connection con) throws SQLException
 	{
-		PreparedStatement temp = con.prepareStatement(" INSERT INTO BookListing ( ID, Title, Author, ISBN, Price, Seller, Condition"
-				+ ", AddInfo) values (default, " + title + " ," + author + " ," + isbn + " ," + price + " ," + sellerID 
+		PreparedStatement temp = con.prepareStatement(" INSERT INTO BookListing ( ID, OrderID, Title, Author, ISBN, Price, Seller, Condition"
+				+ ", AddInfo) values (default, " + orderID + " ," + title + " ," + author + " ," + isbn + " ," + price + " ," + sellerID 
 				+ " ," + condition + " ," + info + ");");
 		return temp;
 	}
@@ -59,6 +60,16 @@ public class BookListing extends DataModel
 	{
 		PreparedStatement temp = con.prepareStatement(" SELECT * FROM Account WHERE ID = \"" + sellerID + "\";")	;
 		return temp;
+	}
+	
+	public int getOrderID()
+	{
+		return orderID;
+	}
+	
+	public void setOrderID(int i)
+	{
+		orderID = i;
 	}
 	
 	public String getTitle()
