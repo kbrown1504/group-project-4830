@@ -27,6 +27,7 @@ public class DBConnection {
 		}
 	}
 	
+
 	public static void getDBConnection(ServletContext context) {
 		servletContext = context;
 		getDBConnection();

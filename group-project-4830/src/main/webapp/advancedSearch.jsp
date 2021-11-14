@@ -56,13 +56,8 @@
 
 <body>
 	<nav class="appbar">
-		<h1 style="color:#ffffff; margin:10px;">BookWorms - ${requestScope["pageTitle"]}</h1>
-		<form>
-			<input class=searchText type="text" name="search" placeholder="Search for a book...">
-			<input type=submit value=Search name=submit>
-		</form>
+		<h1 style="color:#ffffff; margin:10px;">BookWorms - Advanced Search</h1>
 		<div class=nav-button>
-			<button onclick="window.location.href='advancedSearch.jsp'" style="height:50px;">Adv.Search</button>
 			<button onclick="window.location.href='home'" style="height:50px;">Home</button>
 			<button style="height:50px;">Profile</button>
 		</div>
