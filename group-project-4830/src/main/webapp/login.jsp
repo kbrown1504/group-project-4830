@@ -49,27 +49,10 @@
 <body>
 	<nav class="appbar">
 		<h1 style="color:#ffffff; margin:10px;">BookWorms - ${requestScope["pageTitle"]}</h1>
-		<div class="forms">
-			<form action="search" method="POST">
-			<select class="dropdown" name="categories" id="categories">
-				<option value="TITLE">Title</option>
-				<option value="AUTHOR">Author</option>
-				<option value="ISBN">ISBN</option>
-			</select>
-			<input class=search type="text" name="search" placeholder="Search for a book by category...">
-			<input type=submit value=Search name=submit>
-			<input type="submit" value="Advanced Search" formaction="advancedSearch">
-			</form>
-			
-		</div>
-		<div class=nav-button>
-			<button onclick="window.location.href='home'" style="height:50px;">Home</button>
-			<button style="height:50px;">Profile</button>
-		</div>
 	</nav>
 	<br>
-	<div style="text-align: center">
-        <h1>Admin Login</h1>
+	<div class="window" style="text-align: center">
+        <h1>Log In</h1>
         <form action="login" method="post">
             <label for="username">Username:</label>
             <input name="username" size="30" />

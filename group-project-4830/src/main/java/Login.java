@@ -64,4 +64,13 @@ public class Login extends HttpServlet {
             throw new ServletException(ex);
         }
     }
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+		//https://stackoverflow.com/questions/38239554/java-web-servlet-writing-plain-text-on-an-existing-html-template-file
+		request.setAttribute("pageTitle", "Log In");
+		
+		RequestDispatcher view = request.getRequestDispatcher("login.jsp");
+		view.forward(request, response);
+	}
 }
