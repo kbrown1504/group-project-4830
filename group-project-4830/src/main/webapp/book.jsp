@@ -70,6 +70,14 @@
 	<div class="window">
 		<h2>Listing Details</h2>
 		<hr>
+		<img src="https://cdn-icons-png.flaticon.com/512/224/224641.png" height=300>
+		<h2>Title: ${requestScope["title"]}</h2>
+		<h2>Author: ${requestScope["author"]}</h2>
+		<h2>ISBN: ${requestScope["isbn"]}</h2>
+		<h2>Price: ${requestScope["price"]}</h2>
+		<h2>Seller: ${requestScope["seller"]}</h2>
+		<h2>Condition: ${requestScope["info"]}</h2>
+		<button>Add to Cart</button>
 	</div>
 </body>
 
