@@ -1,6 +1,4 @@
-<!-
-//https://stackoverflow.com/questions/38239554/java-web-servlet-writing-plain-text-on-an-existing-html-template-file 
-!->
+
 
 <!DOCTYPE html PUBLIC>
 <html>
@@ -64,7 +62,7 @@
 		</div>
 		<div class=nav-button>
 			<button onclick="window.location.href='home'" style="height:50px;">Home</button>
-			<button style="height:50px;">Profile</button>
+			<button onclick="window.location.href='Cart'" style="height:50px;">Cart</button>
 		</div>
 	</nav>
 	<div class="window">

@@ -63,7 +63,7 @@
 		</form>
 		<div class=nav-button>
 			<button onclick="window.location.href='home'" style="height:50px;">Home</button>
-			<button style="height:50px;">Profile</button>
+			<button onclick="window.location.href='Cart'" style="height:50px;">Cart</button>
 		</div>
 	</nav>
 	
