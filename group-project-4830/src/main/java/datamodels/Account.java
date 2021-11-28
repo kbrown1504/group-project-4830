@@ -1,10 +1,13 @@
 package datamodels;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class Account extends DataModel
 {
 	//Appropriate storage fields for MySQL fields
 	private String username, email, password;
+	
+	ArrayList<Integer> cartBookIds = new ArrayList<Integer>();
 	public Account(int i, String us, String em, String pw)
 	{
 		id = i;
@@ -30,6 +33,14 @@ public class Account extends DataModel
 			return "Accepted html/statement push";
 		else
 			return "Invalid password html/push";
+	}
+	
+	public void addBookToCard(int idToAdd) {
+		//TODO: implement
+	}
+	
+	public void removeBookFromCard(int idToRemove) {
+		//TODO: implement
 	}
 	
 	
