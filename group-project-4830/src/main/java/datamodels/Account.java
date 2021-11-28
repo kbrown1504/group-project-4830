@@ -35,11 +35,11 @@ public class Account extends DataModel
 			return "Invalid password html/push";
 	}
 	
-	public void addBookToCard(int idToAdd) {
+	public void addBookToCart(int idToAdd) {
 		//TODO: implement
 	}
 	
-	public void removeBookFromCard(int idToRemove) {
+	public void removeBookFromCart(int idToRemove) {
 		//TODO: implement
 	}
 	
