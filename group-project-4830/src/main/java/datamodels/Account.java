@@ -7,7 +7,7 @@ public class Account extends DataModel
 	//Appropriate storage fields for MySQL fields
 	private String username, email, password;
 	
-	ArrayList<Integer> cartBookIds = new ArrayList<Integer>();
+	ArrayList<Integer> cartBookIDs = new ArrayList<Integer>();
 	public Account(int i, String us, String em, String pw)
 	{
 		id = i;
