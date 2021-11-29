@@ -60,7 +60,7 @@ public class DBConnection {
 	}
 	
 	//TODO: may need ISBN as double or int
-	public ResultSet advancedSearch(String title, String author, String isbn) {
+	public ResultSet advancedSearch(String title, String author, String isbn, double priceLow, double priceHigh, int condition) {
 		ResultSet rs = null;
 		
 		title = "%"+title+"%";
