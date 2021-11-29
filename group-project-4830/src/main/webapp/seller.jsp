@@ -75,21 +75,16 @@
 		</div>
 	</nav>
 	<div class="window">
-		<h2>Listing Details</h2>
+		<h1>${requestScope["sellerName"]}</h1>
 		<hr>
-		<img src="https://cdn-icons-png.flaticon.com/512/224/224641.png" height=200 style="float:left;margin-right:10px;">
-		
-		<div class="priceCard">
-			<h1>$${requestScope["price"]}</h1>
-			<h2>Seller: <a href=${requestScope["sellerURL"]}>${requestScope["seller"]}</a></h2>
-			<button>Add to Cart</button>
+		<div>
+			<h2>Reviews</h2>
 		</div>
-		
-		<h1>Title: ${requestScope["title"]}</h1>
-		<h2>Author: ${requestScope["author"]}</h2>
-		<h2>ISBN: ${requestScope["isbn"]}</h2>
-		<h2>Condition: ${requestScope["info"]}</h2>
-		
+		<hr>
+		<div>
+			<h2>Current Listings</h2>
+			${requestScope["sellerBooks"]}
+		</div>
 	</div>
 </body>
 
