@@ -1,4 +1,6 @@
-
+<!-
+//https://stackoverflow.com/questions/38239554/java-web-servlet-writing-plain-text-on-an-existing-html-template-file 
+!->
 
 <!DOCTYPE html PUBLIC>
 <html>
@@ -41,6 +43,13 @@
 			margin-right:auto;
 			width:60%;
 		}
+		.priceCard{
+			float: right;
+			padding: 10px;
+			border-radius:20px;
+			box-shadow: 5px 5px 3px #aaaaaa;
+			border: 1px solid #aaaaaa;
+		}
 	</style>
 </head>
 
@@ -66,9 +75,16 @@
 		</div>
 	</nav>
 	<div class="window">
-		<h2>Search Results</h2>
+		<h1>${requestScope["sellerName"]}</h1>
 		<hr>
-		${requestScope["searchResults"]}
+		<div>
+			<h2>Reviews</h2>
+		</div>
+		<hr>
+		<div>
+			<h2>Current Listings</h2>
+			${requestScope["sellerBooks"]}
+		</div>
 	</div>
 </body>
 

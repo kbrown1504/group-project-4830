@@ -65,7 +65,7 @@
 			</select>
 			<input class=search type="text" name="search" placeholder="Search for a book by category..." value="${requestScope["search"]}">
 			<input type=submit value=Search name=submit>
-			<input type="submit" value="Advanced Search" formaction="advancedSearch">
+			<input type="submit" value="Advanced Search" formaction="advancedSearch.jsp">
 			</form>
 			
 		</div>
@@ -81,7 +81,7 @@
 		
 		<div class="priceCard">
 			<h1>$${requestScope["price"]}</h1>
-			<h2>Seller: ${requestScope["seller"]}</h2>
+			<h2>Seller: <a href=${requestScope["sellerURL"]}>${requestScope["seller"]}</a></h2>
 			<button>Add to Cart</button>
 		</div>
 		
