@@ -1,6 +1,9 @@
 
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import datamodels.BookListing;
+import datamodels.DataParser;
 
 /**
  * Servlet implementation class Home
@@ -35,11 +39,21 @@ public class Home extends HttpServlet {
 		//https://stackoverflow.com/questions/38239554/java-web-servlet-writing-plain-text-on-an-existing-html-template-file
 		request.setAttribute("pageTitle", "Home");
 		
-		BookListing test1 = new BookListing(0, -1, "Software Engineering", "Ian Sommerville", 9781292096131L, 40.00, 0, 1, "test info");
-		BookListing test2 = new BookListing(0, -1, "Invitation to Cryptology", "Thomas Barr", 9780130889768L, 30.00, 0, 1, "test info");
-		BookListing test3 = new BookListing(0, -1, "Attacking Network Protocols", "James Forshaw", 9781593277505L, 40.00, 0, 1, "test info");
+		String htmlStr = "";
 		
-		request.setAttribute("books", test1.getCardHTML() + test2.getCardHTML() + test3.getCardHTML());
+		DBConnection.getDBConnection(this.getServletContext());
+		try {
+			ArrayList<BookListing> books = DataParser.parseBookListing(DBConnection.getNewListings());
+			Iterator<BookListing> it = books.iterator();
+			while(it.hasNext()) {
+				htmlStr += it.next().getCardHTML();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		request.setAttribute("books", htmlStr);
 		
 		RequestDispatcher view = request.getRequestDispatcher("home.jsp");
 		view.forward(request, response);
