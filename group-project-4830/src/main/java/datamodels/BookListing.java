@@ -5,8 +5,9 @@ public class BookListing extends DataModel
 {
 	private int sellerID,condition, orderID;
 	private String title, author,info;
-	private double isbn,price;
-	public BookListing(int i, int oid, String titl, String auth, double ISB, double pric, int s, int cond, String inf)
+	private double price;
+	private long isbn;
+	public BookListing(int i, int oid, String titl, String auth, long ISB, double pric, int s, int cond, String inf)
 	{
 		id = i;
 		orderID = oid;
@@ -22,7 +23,7 @@ public class BookListing extends DataModel
 	//Create mySQL statement from object
 	public PreparedStatement create(Connection con) throws SQLException
 	{
-		PreparedStatement temp = con.prepareStatement(" INSERT INTO BookListing ( ID, OrderID, Title, Author, ISBN, Price, Seller, Condition"
+		PreparedStatement temp = con.prepareStatement(" INSERT INTO BookListing ( ID, OrderID, Title, Author, ISBN, Price, Seller, Quality"
 				+ ", AddInfo) values (default, " + orderID + " ," + title + " ," + author + " ," + isbn + " ," + price + " ," + sellerID 
 				+ " ," + condition + " ," + info + ");");
 		return temp;
@@ -92,12 +93,12 @@ public class BookListing extends DataModel
 		author = auth;
 	}
 	
-	public double getISBN()
+	public long getISBN()
 	{
 		return isbn;
 	}
 	
-	public void setISBN(double isb)
+	public void setISBN(long isb)
 	{
 		isbn = isb;
 	}
@@ -140,5 +141,10 @@ public class BookListing extends DataModel
 	public void setInfo(String inf)
 	{
 		info = inf;
+	}
+	
+	public String toString()
+	{
+		return id + " " + orderID + " " + title + " " + author + " " + isbn + " " + price + " " + sellerID + " " + condition + " " + info + "\n";
 	}
 }

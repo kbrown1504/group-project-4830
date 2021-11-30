@@ -36,7 +36,7 @@ public class Book extends HttpServlet {
 		
 		String i = request.getParameter("id");
 		int id = Integer.parseInt(i);
-		BookListing test1 = new BookListing(0, -1, "Software Engineering", "Ian Sommerville", 9781292096131.0, 40.00, 0, 1, "test info");
+		BookListing test1 = new BookListing(0, -1, "Software Engineering", "Ian Sommerville", 9781292096131L, 40.00, 0, 1, "test info");
 		//TODO: Need to grab book by ID from DB
 		
 		request.setAttribute("title", test1.getTitle());

@@ -32,9 +32,9 @@ public class Cart extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		response.setContentType("text/html");
-		BookListing test1 = new BookListing(0, -1, "Software Engineering", "Ian Sommerville", 9781292096131.0, 40.00, 0, 1, "test info");
-		BookListing test2 = new BookListing(0, -1, "Invitation to Cryptology", "Thomas Barr", 0130889768.0, 30.00, 0, 1, "test info");
-		BookListing test3 = new BookListing(0, -1, "Attacking Network Protocols", "James Forshaw", 9781593277505.0, 40.00, 0, 1, "test info");
+		BookListing test1 = new BookListing(0, -1, "Software Engineering", "Ian Sommerville", 9781292096131L, 40.00, 0, 1, "test info");
+		BookListing test2 = new BookListing(0, -1, "Invitation to Cryptology", "Thomas Barr", 9780130889768L, 30.00, 0, 1, "test info");
+		BookListing test3 = new BookListing(0, -1, "Attacking Network Protocols", "James Forshaw", 9781593277505L, 40.00, 0, 1, "test info");
 		ArrayList<BookListing> shoppingCart = new ArrayList<BookListing>();
 		shoppingCart.add(test1);
 		shoppingCart.add(test2);

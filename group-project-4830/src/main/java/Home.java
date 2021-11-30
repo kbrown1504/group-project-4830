@@ -35,9 +35,9 @@ public class Home extends HttpServlet {
 		//https://stackoverflow.com/questions/38239554/java-web-servlet-writing-plain-text-on-an-existing-html-template-file
 		request.setAttribute("pageTitle", "Home");
 		
-		BookListing test1 = new BookListing(0, -1, "Software Engineering", "Ian Sommerville", 9781292096131.0, 40.00, 0, 1, "test info");
-		BookListing test2 = new BookListing(0, -1, "Invitation to Cryptology", "Thomas Barr", 0130889768.0, 30.00, 0, 1, "test info");
-		BookListing test3 = new BookListing(0, -1, "Attacking Network Protocols", "James Forshaw", 9781593277505.0, 40.00, 0, 1, "test info");
+		BookListing test1 = new BookListing(0, -1, "Software Engineering", "Ian Sommerville", 9781292096131L, 40.00, 0, 1, "test info");
+		BookListing test2 = new BookListing(0, -1, "Invitation to Cryptology", "Thomas Barr", 9780130889768L, 30.00, 0, 1, "test info");
+		BookListing test3 = new BookListing(0, -1, "Attacking Network Protocols", "James Forshaw", 9781593277505L, 40.00, 0, 1, "test info");
 		
 		request.setAttribute("books", test1.getCardHTML() + test2.getCardHTML() + test3.getCardHTML());
 		

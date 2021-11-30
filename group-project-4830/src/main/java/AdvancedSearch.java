@@ -83,12 +83,12 @@ public class AdvancedSearch extends HttpServlet {
 			}
 			if (!conditionMin.isEmpty())
 			{
-				selectSQL = selectSQL.concat(" AND WHERE CONDITION >= ?");
+				selectSQL = selectSQL.concat(" AND WHERE QUALITY >= ?");
 				input.add(conditionMin);
 			}
 			if (!conditionMax.isEmpty())
 			{
-				selectSQL = selectSQL.concat(" AND WHERE CONDITION <= ?");
+				selectSQL = selectSQL.concat(" AND WHERE QUALITY <= ?");
 				input.add(conditionMax);
 			}
 			if (!seller.isEmpty())
