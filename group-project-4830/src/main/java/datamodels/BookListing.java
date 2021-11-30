@@ -5,8 +5,9 @@ public class BookListing extends DataModel
 {
 	private int sellerID,condition, orderID;
 	private String title, author,info;
-	private double isbn,price;
-	public BookListing(int i, int oid, String titl, String auth, double ISB, double pric, int s, int cond, String inf)
+	private double price;
+	private long isbn;
+	public BookListing(int i, int oid, String titl, String auth, long ISB, double pric, int s, int cond, String inf)
 	{
 		id = i;
 		orderID = oid;
@@ -92,12 +93,12 @@ public class BookListing extends DataModel
 		author = auth;
 	}
 	
-	public double getISBN()
+	public long getISBN()
 	{
 		return isbn;
 	}
 	
-	public void setISBN(double isb)
+	public void setISBN(long isb)
 	{
 		isbn = isb;
 	}

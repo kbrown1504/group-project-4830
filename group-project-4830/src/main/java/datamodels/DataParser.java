@@ -21,7 +21,7 @@ public class DataParser {
 		while (res.next())
 		{
 			BookListing t1 = new BookListing(res.getInt("ID"), res.getInt("OrderID"), res.getString("Title"), res.getString("Author"), 
-					res.getDouble("ISBN"), res.getDouble("Price"), res.getInt("Seller"), res.getInt("Condition"),
+					res.getLong("ISBN"), res.getDouble("Price"), res.getInt("Seller"), res.getInt("Condition"),
 					res.getString("AddInfo)"));
 			temp.add(t1);
 		}

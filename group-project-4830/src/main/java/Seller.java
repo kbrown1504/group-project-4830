@@ -38,7 +38,7 @@ public class Seller extends HttpServlet {
 		int id = Integer.parseInt(i);
 		
 		//fake seller data TODO: remove and replace with real data
-		BookListing test1 = new BookListing(0, -1, "Software Engineering", "Ian Sommerville", 9781292096131.0, 40.00, 0, 1, "test info");
+		BookListing test1 = new BookListing(0, -1, "Software Engineering", "Ian Sommerville", 9781292096131L, 40.00, 0, 1, "test info");
 		request.setAttribute("sellerBooks", test1.getCardHTML());
 		request.setAttribute("sellerName", "John Doe");
 		
