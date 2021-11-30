@@ -22,7 +22,7 @@ public class DataParser {
 		{
 			BookListing t1 = new BookListing(res.getInt("ID"), res.getInt("OrderID"), res.getString("Title"), res.getString("Author"), 
 					res.getLong("ISBN"), res.getDouble("Price"), res.getInt("Seller"), res.getInt("Quality"),
-					res.getString("AddInfo)"));
+					res.getString("AddInfo"));
 			temp.add(t1);
 		}
 		return temp;

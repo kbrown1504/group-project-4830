@@ -142,4 +142,9 @@ public class BookListing extends DataModel
 	{
 		info = inf;
 	}
+	
+	public String toString()
+	{
+		return id + " " + orderID + " " + title + " " + author + " " + isbn + " " + price + " " + sellerID + " " + condition + " " + info + "\n";
+	}
 }
