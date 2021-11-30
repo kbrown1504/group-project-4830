@@ -23,7 +23,7 @@ public class BookListing extends DataModel
 	//Create mySQL statement from object
 	public PreparedStatement create(Connection con) throws SQLException
 	{
-		PreparedStatement temp = con.prepareStatement(" INSERT INTO BookListing ( ID, OrderID, Title, Author, ISBN, Price, Seller, Condition"
+		PreparedStatement temp = con.prepareStatement(" INSERT INTO BookListing ( ID, OrderID, Title, Author, ISBN, Price, Seller, Quality"
 				+ ", AddInfo) values (default, " + orderID + " ," + title + " ," + author + " ," + isbn + " ," + price + " ," + sellerID 
 				+ " ," + condition + " ," + info + ");");
 		return temp;
