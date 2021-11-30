@@ -37,6 +37,9 @@ public class AdvancedSearch extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+		//TODO: Move DB Call?
+		//TODO: change = to LIKE and add wild-cards to parameters
+		
 		String title = request.getParameter("title");
 		String author = request.getParameter("author");
 		String isbn = request.getParameter("isbn");
@@ -58,7 +61,8 @@ public class AdvancedSearch extends HttpServlet {
 			String selectSQL = "";
 			if (!title.isEmpty())
 			{
-				selectSQL = selectSQL.concat(" AND WHERE TITLE = ?");
+				title = '%' + title + '%';
+				selectSQL = selectSQL.concat(" AND WHERE TITLE LIKE ?");
 				input.add(title);
 			}
 			if (!author.isEmpty())
@@ -116,7 +120,7 @@ public class AdvancedSearch extends HttpServlet {
 			}
 			
 			request.setAttribute("books", outHTML);
-			RequestDispatcher view = request.getRequestDispatcher("home.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("advancedSearch.jsp");
 			view.forward(request, response);
 		}
 		catch (SQLException se) 

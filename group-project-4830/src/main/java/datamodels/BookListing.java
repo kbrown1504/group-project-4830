@@ -29,14 +29,7 @@ public class BookListing extends DataModel
 		return temp;
 	}
 	
-	//Return a detailed html item of book
-	public String getHTML()
-	{
-		String temp = "HTML or itemized return of BookListing object";
-		return temp;
-		
-	}
-	//Return a shorter card display friend html version of object
+	//Return a html card with book info
 	public String getCardHTML()
 	{
 		String htmlStr = String.format(
@@ -48,19 +41,12 @@ public class BookListing extends DataModel
 				+ "<a style=\"font-size:1.5rem;font-weight:bold;\" href=\"book?id=%d\">%s</a>"
 				+ "<h2>$%.02f</h2>"
 				+ "<h3>Author: %s</h3>"
-				+ "<h3>ISBN: %.0f</h3>"
+				+ "<h3>ISBN: %d</h3>"
 				+ "</div>"
 				+ "</div>",
 				"https://cdn-icons-png.flaticon.com/512/224/224641.png", "200", id, title, price, author, isbn
 				);
 		return htmlStr;
-	}
-	
-	//Get search statement to pull seller
-	public PreparedStatement getSeller(Connection con) throws SQLException
-	{
-		PreparedStatement temp = con.prepareStatement(" SELECT * FROM Account WHERE ID = \"" + sellerID + "\";")	;
-		return temp;
 	}
 	
 	public int getOrderID()

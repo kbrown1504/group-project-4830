@@ -1,6 +1,8 @@
 
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,7 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import datamodels.Account;
 import datamodels.BookListing;
+import datamodels.DataParser;
 
 /**
  * Servlet implementation class Book
@@ -36,16 +40,29 @@ public class Book extends HttpServlet {
 		
 		String i = request.getParameter("id");
 		int id = Integer.parseInt(i);
-		BookListing test1 = new BookListing(0, -1, "Software Engineering", "Ian Sommerville", 9781292096131L, 40.00, 0, 1, "test info");
-		//TODO: Need to grab book by ID from DB
 		
-		request.setAttribute("title", test1.getTitle());
-		request.setAttribute("author", test1.getAuthor());
-		request.setAttribute("isbn", test1.getISBN());
-		request.setAttribute("price", test1.getPrice());
-		request.setAttribute("seller", "John Doe");
-		request.setAttribute("info", test1.getInfo());
-		request.setAttribute("sellerURL", "seller?id=0");	
+		DBConnection.getDBConnection(this.getServletContext());
+		ResultSet bookRs = DBConnection.getBook(id);
+		try {
+			BookListing book = DataParser.parseBookListing(bookRs).get(0);
+			
+			request.setAttribute("price", book.getPrice());
+			request.setAttribute("sellerURL", "seller?id=" + book.getSellerID());
+			request.setAttribute("title", book.getTitle());
+			request.setAttribute("author", book.getAuthor());
+			request.setAttribute("isbn", book.getISBN());
+			request.setAttribute("info", book.getInfo());
+			
+			//Grab seller and set name
+			ResultSet sellerRs = DBConnection.getSeller(book.getSellerID());
+			Account seller = DataParser.parseAccount(sellerRs).get(0);
+			request.setAttribute("seller", seller.getUsername());
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		RequestDispatcher view = request.getRequestDispatcher("book.jsp");
 		view.forward(request, response);
 	}
