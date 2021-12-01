@@ -79,6 +79,7 @@
 		<hr>
 		<div>
 			<h2>Reviews</h2>
+			${requestScope["reviews"]}
 		</div>
 		<hr>
 		<div>

@@ -147,6 +147,45 @@ public class DBConnection {
 		return rs;
 	}
 	
+	public static ResultSet getSellerBooks(int sellerID) {
+		ResultSet rs = null;
+		String sql = "Select * from BookListing where Seller = " + sellerID;
+		
+		if (connection != null) {
+			try {
+				PreparedStatement prepState = connection.prepareStatement(sql);
+				try {
+					rs = prepState.executeQuery();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return rs;
+	}
+	public static ResultSet getSellerReviews(int sellerID) {
+		ResultSet rs = null;
+		String sql = "Select * from Reviews where SellerID = " + sellerID + " LIMIT 5";
+		
+		if (connection != null) {
+			try {
+				PreparedStatement prepState = connection.prepareStatement(sql);
+				try {
+					rs = prepState.executeQuery();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return rs;
+	}
+	
 	static String getURL() {
 		return UtilProp.getProp("url");
 	}

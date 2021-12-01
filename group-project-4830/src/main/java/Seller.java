@@ -1,6 +1,10 @@
 
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,7 +13,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import datamodels.Account;
 import datamodels.BookListing;
+import datamodels.DataParser;
+import datamodels.Review;
 
 /**
  * Servlet implementation class Seller
@@ -37,10 +44,41 @@ public class Seller extends HttpServlet {
 		String i = request.getParameter("id");
 		int id = Integer.parseInt(i);
 		
-		//fake seller data TODO: remove and replace with real data
-		BookListing test1 = new BookListing(0, -1, "Software Engineering", "Ian Sommerville", 9781292096131L, 40.00, 0, 1, "test info");
-		request.setAttribute("sellerBooks", test1.getCardHTML());
-		request.setAttribute("sellerName", "John Doe");
+		DBConnection.getDBConnection(this.getServletContext());
+		//Grab seller and set name
+		try {
+			//get Seller
+			ResultSet sellerRs = DBConnection.getSeller(id);
+			Account seller;
+			seller = DataParser.parseAccount(sellerRs).get(0);
+			request.setAttribute("sellerName", seller.getUsername());
+			
+			
+			//get Seller Reviews
+			ResultSet reviewsRs = DBConnection.getSellerReviews(id);
+			ArrayList<Review> reviews = DataParser.parseReview(reviewsRs);
+			String reviewsHTML = "";
+			Iterator<Review> reviewItr = reviews.iterator();
+			while (reviewItr.hasNext()) {
+				//TODO: Add code for getting Review HTML
+				reviewItr.next();
+			}
+			request.setAttribute("reviews", reviewsHTML);
+			
+			//get Seller Books
+			ResultSet booksRs = DBConnection.getSellerBooks(id);
+			ArrayList<BookListing> sellerBooks = DataParser.parseBookListing(booksRs);
+			String booksHTML = "";
+			Iterator<BookListing> bookItr = sellerBooks.iterator();
+			while (bookItr.hasNext()) {
+				booksHTML += bookItr.next().getCardHTML();
+			}
+			request.setAttribute("sellerBooks", booksHTML);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		RequestDispatcher view = request.getRequestDispatcher("seller.jsp");
 		view.forward(request, response);
