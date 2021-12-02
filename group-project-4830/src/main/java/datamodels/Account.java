@@ -19,21 +19,15 @@ public class Account extends DataModel
 	//Create mySQL statement from object
 	public PreparedStatement create(Connection con) throws SQLException
 	{
-		PreparedStatement temp = con.prepareStatement(" INSERT INTO Account ( ID, Username, Email, Password) values (default, "
-				+ username + " ," + email + " ," + password + ")");
+		PreparedStatement temp = con.prepareStatement(" INSERT INTO Account (ID, Username, Email, Password) VALUES (default, ?, ?, ?)");
+		temp.setString(1, username);
+		temp.setString(2, email);
+		temp.setString(3, password);
 		return temp;
 	}
 	
 	//No getHTML() for Account because of login security
 	
-	//Special login method
-	public String login(String p)
-	{
-		if (p.contentEquals(password))
-			return "Accepted html/statement push";
-		else
-			return "Invalid password html/push";
-	}
 	
 	public void addBookToCart(int idToAdd) {
 		//TODO: implement
@@ -74,4 +68,8 @@ public class Account extends DataModel
 		password = pw;
 	}
 
+	public String toString()
+	{
+		return id + " " + username + " " + email + " " + password + "\n";
+	}
 }
