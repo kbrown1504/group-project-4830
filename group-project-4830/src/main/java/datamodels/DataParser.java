@@ -11,6 +11,7 @@ public class DataParser {
 		{
 			Account t1 = new Account(res.getInt("ID"), res.getString("Username"), res.getString("Email"), res.getString("Password"));
 			temp.add(t1);
+			System.out.println(temp);
 		}
 		return temp;
 	}

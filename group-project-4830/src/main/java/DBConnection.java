@@ -146,7 +146,6 @@ public class DBConnection {
 		
 		return rs;
 	}
-	
 	static String getURL() {
 		return UtilProp.getProp("url");
 	}
