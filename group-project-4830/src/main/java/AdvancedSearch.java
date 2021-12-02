@@ -62,50 +62,47 @@ public class AdvancedSearch extends HttpServlet {
 			if (!title.isEmpty())
 			{
 				title = '%' + title + '%';
-				selectSQL = selectSQL.concat(" AND WHERE TITLE LIKE ?");
+				selectSQL = selectSQL.concat(" AND TITLE LIKE ?");
 				input.add(title);
 			}
 			if (!author.isEmpty())
 			{
-				selectSQL = selectSQL.concat(" AND WHERE AUTHOR = ?");
+				author = '%' + author + '%';
+				selectSQL = selectSQL.concat(" AND AUTHOR LIKE ?");
 				input.add(author);
 			}
 			if (!isbn.isEmpty())
 			{
-				selectSQL = selectSQL.concat(" AND WHERE ISBN = ?");
+				selectSQL = selectSQL.concat(" AND ISBN = ?");
 				input.add(isbn);
 			}
 			if (!priceMin.isEmpty())
 			{
-				selectSQL = selectSQL.concat(" AND WHERE PRICE >= ?");
+				selectSQL = selectSQL.concat(" AND PRICE >= ?");
 				input.add(priceMin);
 			}
 			if (!priceMax.isEmpty())
 			{
-				selectSQL = selectSQL.concat(" AND WHERE Price <= ?");
+				selectSQL = selectSQL.concat(" AND Price <= ?");
 				input.add(priceMax);
 			}
 			if (!conditionMin.isEmpty())
 			{
-				selectSQL = selectSQL.concat(" AND WHERE QUALITY >= ?");
+				selectSQL = selectSQL.concat(" AND QUALITY >= ?");
 				input.add(conditionMin);
 			}
 			if (!conditionMax.isEmpty())
 			{
-				selectSQL = selectSQL.concat(" AND WHERE QUALITY <= ?");
+				selectSQL = selectSQL.concat(" AND QUALITY <= ?");
 				input.add(conditionMax);
 			}
 			if (!seller.isEmpty())
 			{
-				selectSQL = selectSQL.concat(" AND WHERE SELLER = ?");
+				selectSQL = selectSQL.concat(" AND SELLER = ?");
 				input.add(seller);
 			}
 			
-			if(selectSQL.length() > 0)
-			{
-				selectSQL = selectSQL.substring(4);
-			}
-			selectSQL = "SELECT * FROM BookListing".concat(selectSQL);
+			selectSQL = "SELECT * FROM BookListing where OrderID=0 ".concat(selectSQL);
 			preparedStatement = connection.prepareStatement(selectSQL);
 			for(int i = 0; i < input.size(); i++)
 			{

@@ -47,7 +47,9 @@ public class DBConnection {
 		 * Search query sorts results by relevance to search term
 		 * SQL code reference: https://www.codexworld.com/how-to/sort-results-order-by-best-match-using-like-in-mysql/
 		 */
-		String sql = String.format("select * from BookListing where %s like '%s' order by "
+		String sql = String.format("select * from BookListing where %s like '%s' "
+				+ "and OrderID=0 "
+				+ "order by "
 				+ "case "
 				+ "when %s like '%s' then 1 "
 				+ "when %s like '%s' then 2 "
@@ -103,7 +105,7 @@ public class DBConnection {
 	public static ResultSet getNewListings() {
 		ResultSet rs = null;
 		
-		String sql = "SELECT * FROM BookListing ORDER BY ID DESC LIMIT 5";
+		String sql = "SELECT * FROM BookListing WHERE ORDERID = 0 ORDER BY ID DESC LIMIT 5";
 		
 		if (connection != null) {
 			try {
@@ -163,7 +165,7 @@ public class DBConnection {
 	
 	public static ResultSet getSellerBooks(int sellerID) {
 		ResultSet rs = null;
-		String sql = "Select * from BookListing where Seller = " + sellerID;
+		String sql = "Select * from BookListing where OrderID = 0 and where Seller = " + sellerID;
 		
 		if (connection != null) {
 			try {
