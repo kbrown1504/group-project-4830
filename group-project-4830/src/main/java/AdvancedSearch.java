@@ -96,11 +96,6 @@ public class AdvancedSearch extends HttpServlet {
 				selectSQL = selectSQL.concat(" AND QUALITY <= ?");
 				input.add(conditionMax);
 			}
-			if (!seller.isEmpty())
-			{
-				selectSQL = selectSQL.concat(" AND SELLER = ?");
-				input.add(seller);
-			}
 			
 			selectSQL = "SELECT * FROM BookListing where OrderID=0 ".concat(selectSQL);
 			preparedStatement = connection.prepareStatement(selectSQL);
