@@ -68,7 +68,7 @@
         </form>
     </div>
 
-	<a href="/group-project-4830/login.jsp">Already have an account? Login.</a>
+	<a href="login.jsp">Already have an account? Login.</a>
 
 </body>
 
