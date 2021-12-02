@@ -64,6 +64,8 @@
             <button type="submit">Login</button>
         </form>
     </div>
+    
+    <a href="/group-project-4830/signUp.jsp">No account? Sign up.</a>
 
 
 </body>
