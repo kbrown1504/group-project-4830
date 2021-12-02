@@ -50,6 +50,9 @@
 			box-shadow: 5px 5px 3px #aaaaaa;
 			border: 1px solid #aaaaaa;
 		}
+		.listings{
+           overflow:hidden;
+        }
 	</style>
 </head>
 
@@ -75,13 +78,15 @@
 		</div>
 	</nav>
 	<div class="window">
+                <img src="https://pbs.twimg.com/profile_images/1450689526863704066/6xFTUTxk_400x400.jpg" height=200 style="float:left;border:5px solid slateblue;margin-right:10px;">
+                
 		<h1>${requestScope["sellerName"]}</h1>
 		<hr>
 		<div>
 			<h2>Reviews</h2>
 		</div>
 		<hr>
-		<div>
+		<div class="listings">
 			<h2>Current Listings</h2>
 			${requestScope["sellerBooks"]}
 		</div>
