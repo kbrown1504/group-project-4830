@@ -165,7 +165,7 @@ public class DBConnection {
 	
 	public static ResultSet getSellerBooks(int sellerID) {
 		ResultSet rs = null;
-		String sql = "Select * from BookListing where OrderID = 0 and where Seller = " + sellerID;
+		String sql = "Select * from BookListing where OrderID = 0 and Seller = " + sellerID;
 		
 		if (connection != null) {
 			try {
