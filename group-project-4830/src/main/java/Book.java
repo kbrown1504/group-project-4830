@@ -47,7 +47,7 @@ public class Book extends HttpServlet {
 		try {
 			BookListing book = DataParser.parseBookListing(bookRs).get(0);
 			
-			request.setAttribute("price", book.getPrice());
+			request.setAttribute("price", String.format("%.2f", book.getPrice()));
 			request.setAttribute("sellerURL", "seller?id=" + book.getSellerID());
 			request.setAttribute("title", book.getTitle());
 			request.setAttribute("author", book.getAuthor());
