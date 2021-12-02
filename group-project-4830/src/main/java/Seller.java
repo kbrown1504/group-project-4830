@@ -75,13 +75,14 @@ public class Seller extends HttpServlet {
 			}
 			request.setAttribute("sellerBooks", booksHTML);
 			
-		} catch (SQLException e) {
+			RequestDispatcher view = request.getRequestDispatcher("seller.jsp");
+			view.forward(request, response);
+			
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 		}
-		
-		RequestDispatcher view = request.getRequestDispatcher("seller.jsp");
-		view.forward(request, response);
 	}
 
 	/**

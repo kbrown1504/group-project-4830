@@ -43,10 +43,11 @@ public class Book extends HttpServlet {
 		
 		DBConnection.getDBConnection(this.getServletContext());
 		ResultSet bookRs = DBConnection.getBook(id);
+		
 		try {
 			BookListing book = DataParser.parseBookListing(bookRs).get(0);
 			
-			request.setAttribute("price", book.getPrice());
+			request.setAttribute("price", String.format("%.2f", book.getPrice()));
 			request.setAttribute("sellerURL", "seller?id=" + book.getSellerID());
 			request.setAttribute("title", book.getTitle());
 			request.setAttribute("author", book.getAuthor());
@@ -58,13 +59,14 @@ public class Book extends HttpServlet {
 			Account seller = DataParser.parseAccount(sellerRs).get(0);
 			request.setAttribute("seller", seller.getUsername());
 			
-		} catch (SQLException e) {
+			RequestDispatcher view = request.getRequestDispatcher("book.jsp");
+			view.forward(request, response);
+			
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 		}
-		
-		RequestDispatcher view = request.getRequestDispatcher("book.jsp");
-		view.forward(request, response);
 	}
 
 	/**

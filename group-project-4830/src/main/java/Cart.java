@@ -49,10 +49,15 @@ public class Cart extends HttpServlet {
 		double shipping = itemCosts * 0.08;
 		double finalCost = itemCosts + tax + shipping;
 		
-		request.setAttribute("itemCosts", itemCosts);
-		request.setAttribute("tax", tax);
-		request.setAttribute("shipping", shipping );
-		request.setAttribute("finalCost", finalCost);
+		String itemCostsStr = String.format("%.2f", itemCosts);
+		String taxStr = String.format("%.2f", tax);
+		String shippingStr = String.format("%.2f", shipping);
+		String finalCostStr = String.format("%.2f", finalCost);
+		
+		request.setAttribute("itemCosts", itemCostsStr);
+		request.setAttribute("tax", taxStr);
+		request.setAttribute("shipping", shippingStr );
+		request.setAttribute("finalCost", finalCostStr);
 		request.setAttribute("books", test1.getCardHTML() + test2.getCardHTML() + test3.getCardHTML());
 		
 		RequestDispatcher view = request.getRequestDispatcher("cart.jsp");
