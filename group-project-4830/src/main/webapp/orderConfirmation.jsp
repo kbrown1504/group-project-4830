@@ -57,10 +57,6 @@
 <body>
 	<nav class="appbar">
 		<h1 style="color:#ffffff; margin:10px;">BookWorms - Order Confirmation</h1>
-		<form>
-			<input class=searchText type="text" name="search" placeholder="Search for a book...">
-			<input type=submit value=Search name=submit>
-		</form>
 		<div class=nav-button>
 			<button onclick="window.location.href='home'" style="height:50px;">Home</button>
 			<button onclick="window.location.href='Cart'" style="height:50px;">Cart</button>

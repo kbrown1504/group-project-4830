@@ -1,6 +1,10 @@
 
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import datamodels.BookListing;
+import datamodels.DataParser;
 
 /**
  * Servlet implementation class Search
@@ -64,9 +69,22 @@ public class Search extends HttpServlet {
 			break;
 		}
 		
-		BookListing test = new BookListing(0, -1, "Software Engineering", "Ian Sommerville", 9781292096131L, 40.00, 0, 1, "test info");
+		DBConnection.getDBConnection(this.getServletContext());
 		
-		request.setAttribute("searchResults", test.getCardHTML());
+		try {
+			ResultSet booksRs = DBConnection.search(category, search);
+			ArrayList<BookListing> books;
+			books = DataParser.parseBookListing(booksRs);
+			Iterator<BookListing> booksItr = books.iterator();
+			String booksHTML = "";
+			while(booksItr.hasNext()) {
+				booksHTML += booksItr.next().getCardHTML();
+			}
+			request.setAttribute("searchResults", booksHTML);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		doGet(request, response);
 	}

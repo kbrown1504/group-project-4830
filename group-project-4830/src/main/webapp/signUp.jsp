@@ -52,21 +52,23 @@
 	</nav>
 	<br>
 	<div class="window" style="text-align: center">
-        <h1>Log In</h1>
-        <form action="login" method="post">
+        <h1>Sign Up</h1>
+        <form action="SignUp" method="post">
             <label for="username">Username:</label>
             <input name="username" size="30" />
+            <br>${message}
             <br><br>
+            <label for="email">Email:</label>
+            <input type="email" name="email" size="30" />            
+            <br><br>   
             <label for="password">Password:</label>
             <input type="password" name="password" size="30" />
-            <br>${message}
-            <br><br>           
-            <button type="submit">Login</button>
+            <br><br>
+            <button type="submit">Sign Up</button>
         </form>
     </div>
-    
-    <a href="/group-project-4830/signUp">No account? Sign up.</a>
 
+	<a href="/group-project-4830/login">Already have an account? Login.</a>
 
 </body>
 

@@ -67,7 +67,7 @@
 		<h2>Filtering Options</h2>
 		<form action="AdvancedSearch" method="POST">
 			<pre>Title: <input class="searchText" type="text" name="title"> Author: <input class="searchText" type="text" name="author"></pre> <br />
-			<pre>ISBN:  <input class="searchText" type="text" name="isbn"> Seller: <input class="searchText" type="text" name="seller"></pre> <br />
+			<pre>ISBN:  <input class="searchText" type="text" name="isbn"></pre> <br />
 			<pre>Price: <input class="searchNum" type="text" name="priceMin" placeholder="minimum"> to <input class="searchNum" type="text" name="priceMax" placeholder="maximum"></pre> <br />
 			<pre>Condition: <input class="searchNum" type="text" name="conditionMin" placeholder="minimum"> to <input class="searchNum" type="text" name="conditionMax" placeholder="maximum"></pre> <br />
 			<input type="submit" value="Search"/>
