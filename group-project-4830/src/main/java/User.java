@@ -8,7 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import datamodels.Account;
 import datamodels.BookListing;
 
 /**
@@ -34,16 +36,25 @@ public class User extends HttpServlet {
 		//https://stackoverflow.com/questions/38239554/java-web-servlet-writing-plain-text-on-an-existing-html-template-file
 		request.setAttribute("pageTitle", "My Account");
 		
-		String i = request.getParameter("id");
-		int id = Integer.parseInt(i);
-		
-		//Placeholder Info until db connects listings
-		BookListing test1 = new BookListing(0, -1, "Software Engineering", "Ian Sommerville", 9781292096131L, 40.00, 0, 1, "test info");
-		request.setAttribute("userBooks", test1.getCardHTML());
-		request.setAttribute("userName", "John Doe");
-		
-		RequestDispatcher view = request.getRequestDispatcher("user.jsp");
-		view.forward(request, response);
+		//Check if a user is logged in
+		HttpSession session = request.getSession();
+		Account user = (Account)session.getAttribute("user");
+		if (user == null) {
+			//If they aren't, redirect to login
+			response.sendRedirect("login");
+		} 
+		else {
+			String i = request.getParameter("id");
+			int id = Integer.parseInt(i);
+			
+			//Placeholder Info until db connects listings
+			BookListing test1 = new BookListing(0, -1, "Software Engineering", "Ian Sommerville", 9781292096131L, 40.00, 0, 1, "test info");
+			request.setAttribute("userBooks", test1.getCardHTML());
+			request.setAttribute("userName", "John Doe");
+			
+			RequestDispatcher view = request.getRequestDispatcher("user.jsp");
+			view.forward(request, response);
+		}
 	}
 
 	/**

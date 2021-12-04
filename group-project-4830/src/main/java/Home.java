@@ -11,7 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import datamodels.Account;
 import datamodels.BookListing;
 import datamodels.DataParser;
 
@@ -41,22 +43,32 @@ public class Home extends HttpServlet {
 		
 		String htmlStr = "";
 		
-		DBConnection.getDBConnection(this.getServletContext());
-		try {
-			ArrayList<BookListing> books = DataParser.parseBookListing(DBConnection.getNewListings());
-			Iterator<BookListing> it = books.iterator();
-			while(it.hasNext()) {
-				htmlStr += it.next().getCardHTML();
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		//Check if a user is logged in
+		HttpSession session = request.getSession();
+		Account user = (Account)session.getAttribute("user");
+		if (user == null) {
+			//If they aren't, redirect to login
+			response.sendRedirect("login");
 		}
-		
-		request.setAttribute("books", htmlStr);
-		
-		RequestDispatcher view = request.getRequestDispatcher("home.jsp");
-		view.forward(request, response);
+		//If they are, continue
+		else {
+			DBConnection.getDBConnection(this.getServletContext());
+			try {
+				ArrayList<BookListing> books = DataParser.parseBookListing(DBConnection.getNewListings());
+				Iterator<BookListing> it = books.iterator();
+				while(it.hasNext()) {
+					htmlStr += it.next().getCardHTML();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			request.setAttribute("books", htmlStr);
+			
+			RequestDispatcher view = request.getRequestDispatcher("home.jsp");
+			view.forward(request, response);
+		}
 		
 	}
 
