@@ -75,6 +75,7 @@
 		</div>
 	</nav>
 	<div class="window">
+		<h2 style="color:green">${requestScope["message"]}</h2>
 		<h2>Listing Details</h2>
 		<hr>
 		<img src="https://cdn-icons-png.flaticon.com/512/224/224641.png" height=200 style="float:left;margin-right:10px;">
@@ -82,7 +83,9 @@
 		<div class="priceCard">
 			<h1>$${requestScope["price"]}</h1>
 			<h2>Seller: <a href=${requestScope["sellerURL"]}>${requestScope["seller"]}</a></h2>
-			<button>Add to Cart</button>
+			<form>
+				<input type="submit" value="Add to Cart" formmethod="POST">
+			</form>
 		</div>
 		
 		<h1>Title: ${requestScope["title"]}</h1>

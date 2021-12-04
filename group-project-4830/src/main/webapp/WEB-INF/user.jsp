@@ -81,7 +81,7 @@
                 
 		<h1 style="font-size:60px;">${requestScope["userName"]}</h1>
 		<hr>
-                        <h1>Email: ${requestScope["userEmail"]}</h1>
+        <h1>Email: ${requestScope["userEmail"]}</h1>
 		<hr>
 		<div class="listings">
 			<h2>My Listings</h2>
