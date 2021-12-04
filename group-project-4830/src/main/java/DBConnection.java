@@ -205,15 +205,14 @@ public class DBConnection {
 	
 	public static ResultSet getCart(ArrayList<Integer> ids) {
 		ResultSet rs = null;
-		String sql = "Select * from BookListing where ID= ";
+		String sql = "Select * from BookListing where ID=";
 		
 		Iterator<Integer> itr = ids.iterator();
 		//Process first ID
 		sql = sql + itr.next();
 		while (itr.hasNext()) {
-			sql += "OR ID=" + itr.next() + " ";
+			sql += " OR ID=" + itr.next() + " ";
 		}
-		System.out.println(sql);
 		
 		if (connection != null) {
 			try {
