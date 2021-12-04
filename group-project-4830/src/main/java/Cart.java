@@ -48,13 +48,18 @@ public class Cart extends HttpServlet {
 		} 
 		else {
 			DBConnection.getDBConnection(this.getServletContext());
-			ArrayList<Integer> cartIds = ((Account)request.getSession().getAttribute("user")).getCart();
+			//Grab stored cart IDs from Account Object
+			ArrayList<Integer> cartIds = ((Account)request.getSession().getAttribute("user")).getCartIDs();
 			
+			//Pull books in cart using IDs
 			ResultSet rs = DBConnection.getCart(cartIds);
 			
 			ArrayList<BookListing> shoppingCart;
 			try {
+				//Decode result from DB
 				shoppingCart = DataParser.parseBookListing(rs);
+				//cache decoded cart to use later if needed
+				user.setCart(shoppingCart);
 				
 				double itemCosts = 0;
 				for (int i = 0; i < shoppingCart.size(); i++)

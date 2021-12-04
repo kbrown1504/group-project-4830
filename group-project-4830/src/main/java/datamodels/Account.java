@@ -7,7 +7,10 @@ public class Account extends DataModel
 	//Appropriate storage fields for MySQL fields
 	private String username, email, password;
 	
-	ArrayList<Integer> cartBookIDs = new ArrayList<Integer>();
+	private ArrayList<Integer> cartBookIDs = new ArrayList<Integer>();
+	private ArrayList<BookListing> cartBooks = new ArrayList<BookListing>();
+	
+	
 	public Account(int i, String us, String em, String pw)
 	{
 		id = i;
@@ -44,8 +47,15 @@ public class Account extends DataModel
 		//TODO: implement
 	}
 	
-	public ArrayList<Integer> getCart() {
+	public ArrayList<Integer> getCartIDs() {		
 		return this.cartBookIDs;
+	}
+	
+	public ArrayList<BookListing> getCart() {
+		return this.cartBooks;
+	}
+	public void setCart(ArrayList<BookListing> cart) {
+		this.cartBooks = cart;
 	}
 	
 	
