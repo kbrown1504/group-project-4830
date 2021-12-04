@@ -43,6 +43,16 @@
 			margin-right:auto;
 			width:60%;
 		}
+		.priceCard{
+			float: right;
+			padding: 10px;
+			border-radius:20px;
+			box-shadow: 5px 5px 3px #aaaaaa;
+			border: 1px solid #aaaaaa;
+		}
+		.listings{
+           overflow:hidden;
+        }
 	</style>
 </head>
 
@@ -52,13 +62,13 @@
 		<div class="forms">
 			<form action="search" method="POST">
 			<select class="dropdown" name="categories" id="categories">
-				<option value="TITLE">Title</option>
-				<option value="AUTHOR">Author</option>
-				<option value="ISBN">ISBN</option>
+				<option value="TITLE" ${requestScope["titleSelected"]}>Title</option>
+				<option value="AUTHOR" ${requestScope["authorSelected"]}>Author</option>
+				<option value="ISBN" ${requestScope["isbnSelected"]}>ISBN</option>
 			</select>
-			<input class=search type="text" name="search" placeholder="Search for a book by category...">
+			<input class=search type="text" name="search" placeholder="Search for a book by category..." value="${requestScope["search"]}">
 			<input type=submit value=Search name=submit>
-			<input type="submit" value="Advanced Search" formaction="advancedSearch.jsp">
+			<input type="submit" value="Advanced Search" formaction="advancedSearch" formmethod="GET">
 			</form>
 			
 		</div>
@@ -68,18 +78,19 @@
 		</div>
 	</nav>
 	<div class="window">
-		<h2>Welcome to BookWorms!</h2>
-		<p>
-			BookWorms is a web-based textbook sale platform designed for students by students.
-			For many college students, textbooks can be a large expense. Especially when those
-			books are only used for a single semester. BookWorms seeks to connect students
-			who want to sell old textbooks with students looking for a cheaper alternative to buying textbooks
-			from a retailer. To get started, search by title, author, or ISBN in the search bar
-			above!
-		</p>
+                <img src="https://pbs.twimg.com/profile_images/1450689526863704066/6xFTUTxk_400x400.jpg" height=200 style="float:left;border:5px solid slateblue;margin-right:10px;">
+                
+		<h1>${requestScope["sellerName"]}</h1>
 		<hr>
-		<h2>New Listings</h2>
-		${requestScope["books"]}
+		<div>
+			<h2>Reviews</h2>
+			${requestScope["reviews"]}
+		</div>
+		<hr>
+		<div class="listings">
+			<h2>Current Listings</h2>
+			${requestScope["sellerBooks"]}
+		</div>
 	</div>
 </body>
 

@@ -67,7 +67,7 @@
 			</select>
 			<input class=search type="text" name="search" placeholder="Search for a book by category..." value="${requestScope["search"]}">
 			<input type=submit value=Search name=submit>
-			<input type="submit" value="Advanced Search" formaction="advancedSearch.jsp">
+			<input type="submit" value="Advanced Search" formaction="advancedSearch" formmethod="GET">
 			</form>
 			
 		</div>

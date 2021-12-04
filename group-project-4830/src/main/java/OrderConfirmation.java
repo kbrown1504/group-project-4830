@@ -8,6 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import datamodels.Account;
 
 /**
  * Servlet implementation class OrderConfirmation
@@ -29,8 +32,17 @@ public class OrderConfirmation extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		response.setContentType("text/html");
-		RequestDispatcher view = request.getRequestDispatcher("orderConfirmation.jsp");
-		view.forward(request, response);
+		//Check if a user is logged in
+		HttpSession session = request.getSession();
+		Account user = (Account)session.getAttribute("user");
+		if (user == null) {
+			//If they aren't, redirect to login
+			response.sendRedirect("login");
+		} 
+		else {
+			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/orderConfirmation.jsp");
+			view.forward(request, response);
+		}
 	}
 
 	/**

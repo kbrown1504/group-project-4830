@@ -33,7 +33,7 @@ public class SignUp extends HttpServlet {
         {
         	request.setAttribute("message", "Password contains an invalid character, must be letter or number");
         	
-        	RequestDispatcher dispatcher = request.getRequestDispatcher("signUp.jsp");
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/signUp.jsp");
             dispatcher.forward(request, response);
             return; //Early exit
         }
@@ -57,7 +57,7 @@ public class SignUp extends HttpServlet {
     			user = pUser.get(0);
     		}
 
-            String destPage = "signUp.jsp";
+            String destPage = "WEB-INF/signUp.jsp";
              
             //User already exists
             if (user != null) {
@@ -95,7 +95,7 @@ public class SignUp extends HttpServlet {
 		//https://stackoverflow.com/questions/38239554/java-web-servlet-writing-plain-text-on-an-existing-html-template-file
 		request.setAttribute("pageTitle", "Sign Up");
 		
-		RequestDispatcher view = request.getRequestDispatcher("signUp.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/signUp.jsp");
 		view.forward(request, response);
 	}
 }

@@ -1,6 +1,4 @@
-<!-
-//https://stackoverflow.com/questions/38239554/java-web-servlet-writing-plain-text-on-an-existing-html-template-file 
-!->
+
 
 <!DOCTYPE html PUBLIC>
 <html>
@@ -43,16 +41,6 @@
 			margin-right:auto;
 			width:60%;
 		}
-		.priceCard{
-			float: right;
-			padding: 10px;
-			border-radius:20px;
-			box-shadow: 5px 5px 3px #aaaaaa;
-			border: 1px solid #aaaaaa;
-		}
-		.listings{
-           overflow:hidden;
-        }
 	</style>
 </head>
 
@@ -68,7 +56,7 @@
 			</select>
 			<input class=search type="text" name="search" placeholder="Search for a book by category..." value="${requestScope["search"]}">
 			<input type=submit value=Search name=submit>
-			<input type="submit" value="Advanced Search" formaction="advancedSearch.jsp">
+			<input type="submit" value="Advanced Search" formaction="advancedSearch" formmethod="GET">
 			</form>
 			
 		</div>
@@ -78,19 +66,9 @@
 		</div>
 	</nav>
 	<div class="window">
-                <img src="https://pbs.twimg.com/profile_images/1450689526863704066/6xFTUTxk_400x400.jpg" height=200 style="float:left;border:5px solid slateblue;margin-right:10px;">
-                
-		<h1>${requestScope["sellerName"]}</h1>
+		<h2>Search Results</h2>
 		<hr>
-		<div>
-			<h2>Reviews</h2>
-			${requestScope["reviews"]}
-		</div>
-		<hr>
-		<div class="listings">
-			<h2>Current Listings</h2>
-			${requestScope["sellerBooks"]}
-		</div>
+		${requestScope["searchResults"]}
 	</div>
 </body>
 

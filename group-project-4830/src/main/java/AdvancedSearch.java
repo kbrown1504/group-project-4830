@@ -13,14 +13,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import datamodels.Account;
 import datamodels.BookListing;
 import datamodels.DataParser;
 
 /**
  * Servlet implementation class AdvancedSearch
  */
-@WebServlet("/AdvancedSearch")
+@WebServlet("/advancedSearch")
 public class AdvancedSearch extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -38,8 +40,25 @@ public class AdvancedSearch extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		//TODO: Move DB Call?
-		//TODO: change = to LIKE and add wild-cards to parameters
 		
+		//Check if a user is logged in
+		HttpSession session = request.getSession();
+		Account user = (Account)session.getAttribute("user");
+		if (user == null) {
+			//If they aren't, redirect to login
+			response.sendRedirect("login");
+		} 
+		else {
+			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/advancedSearch.jsp");
+			view.forward(request, response);
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		String title = request.getParameter("title");
 		String author = request.getParameter("author");
 		String isbn = request.getParameter("isbn");
@@ -112,7 +131,7 @@ public class AdvancedSearch extends HttpServlet {
 			}
 			
 			request.setAttribute("books", outHTML);
-			RequestDispatcher view = request.getRequestDispatcher("advancedSearch.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/advancedSearch.jsp");
 			view.forward(request, response);
 		}
 		catch (SQLException se) 
@@ -143,16 +162,6 @@ public class AdvancedSearch extends HttpServlet {
 	            se.printStackTrace();
 	         }
 	      }
-		
-		
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-	{
-		doGet(request, response);
 	}
 
 }
