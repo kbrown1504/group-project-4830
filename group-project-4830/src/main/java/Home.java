@@ -66,7 +66,7 @@ public class Home extends HttpServlet {
 			
 			request.setAttribute("books", htmlStr);
 			
-			RequestDispatcher view = request.getRequestDispatcher("home.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/home.jsp");
 			view.forward(request, response);
 		}
 		

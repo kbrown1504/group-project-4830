@@ -48,7 +48,7 @@ public class Search extends HttpServlet {
 			//If they aren't, redirect to login
 			response.sendRedirect("login");
 		} else {
-			RequestDispatcher view = request.getRequestDispatcher("search.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/search.jsp");
 			view.forward(request, response);
 		}
 	}

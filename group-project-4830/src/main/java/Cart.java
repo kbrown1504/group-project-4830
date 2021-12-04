@@ -71,7 +71,7 @@ public class Cart extends HttpServlet {
 			request.setAttribute("finalCost", finalCostStr);
 			request.setAttribute("books", test1.getCardHTML() + test2.getCardHTML() + test3.getCardHTML());
 			
-			RequestDispatcher view = request.getRequestDispatcher("cart.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/cart.jsp");
 			view.forward(request, response);
 		}
 	}

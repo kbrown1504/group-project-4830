@@ -47,7 +47,7 @@ public class Login extends HttpServlet {
     		}
 
     		connection.close();
-            String destPage = "login.jsp";
+            String destPage = "WEB-INF/login.jsp";
              
             if (user != null) {
                 HttpSession session = request.getSession();
@@ -72,7 +72,7 @@ public class Login extends HttpServlet {
 		//https://stackoverflow.com/questions/38239554/java-web-servlet-writing-plain-text-on-an-existing-html-template-file
 		request.setAttribute("pageTitle", "Log In");
 		
-		RequestDispatcher view = request.getRequestDispatcher("login.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/login.jsp");
 		view.forward(request, response);
 	}
 }

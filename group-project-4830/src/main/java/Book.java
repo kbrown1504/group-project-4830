@@ -68,7 +68,7 @@ public class Book extends HttpServlet {
 				Account seller = DataParser.parseAccount(sellerRs).get(0);
 				request.setAttribute("seller", seller.getUsername());
 				
-				RequestDispatcher view = request.getRequestDispatcher("book.jsp");
+				RequestDispatcher view = request.getRequestDispatcher("WEB-INF/book.jsp");
 				view.forward(request, response);
 				
 			} catch (Exception e) {

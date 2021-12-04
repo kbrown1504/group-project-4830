@@ -52,7 +52,7 @@ public class User extends HttpServlet {
 			request.setAttribute("userBooks", test1.getCardHTML());
 			request.setAttribute("userName", "John Doe");
 			
-			RequestDispatcher view = request.getRequestDispatcher("user.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/user.jsp");
 			view.forward(request, response);
 		}
 	}

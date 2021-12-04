@@ -65,7 +65,7 @@
 	
 	<div class="filterPane">
 		<h2>Filtering Options</h2>
-		<form action="AdvancedSearch" method="POST">
+		<form action="advancedSearch" method="POST">
 			<pre>Title: <input class="searchText" type="text" name="title"> Author: <input class="searchText" type="text" name="author"></pre> <br />
 			<pre>ISBN:  <input class="searchText" type="text" name="isbn"></pre> <br />
 			<pre>Price: <input class="searchNum" type="text" name="priceMin" placeholder="minimum"> to <input class="searchNum" type="text" name="priceMax" placeholder="maximum"></pre> <br />

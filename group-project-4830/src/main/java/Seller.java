@@ -85,7 +85,7 @@ public class Seller extends HttpServlet {
 				}
 				request.setAttribute("sellerBooks", booksHTML);
 				
-				RequestDispatcher view = request.getRequestDispatcher("seller.jsp");
+				RequestDispatcher view = request.getRequestDispatcher("WEB-INF/seller.jsp");
 				view.forward(request, response);
 				
 			} catch (Exception e) {

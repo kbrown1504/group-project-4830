@@ -40,7 +40,7 @@ public class OrderConfirmation extends HttpServlet {
 			response.sendRedirect("login");
 		} 
 		else {
-			RequestDispatcher view = request.getRequestDispatcher("orderConfirmation.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/orderConfirmation.jsp");
 			view.forward(request, response);
 		}
 	}
