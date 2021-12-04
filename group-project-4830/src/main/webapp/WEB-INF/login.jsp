@@ -10,7 +10,7 @@
 		.appbar {
 			background:#00004e;
 			display:table;
-			height: 90px;a
+			height: 90px;
 			width:100%;
 			position:absolute;
 			top:0;
