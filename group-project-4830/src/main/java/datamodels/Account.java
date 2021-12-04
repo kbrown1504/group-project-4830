@@ -28,9 +28,16 @@ public class Account extends DataModel
 	
 	//No getHTML() for Account because of login security
 	
-	
-	public void addBookToCart(int idToAdd) {
-		//TODO: implement
+	/*
+	 * Adds a book the the user's cart
+	 * Returns: A string with a success or failure message.
+	 */
+	public String addBookToCart(int idToAdd) {
+		if (!this.cartBookIDs.contains(idToAdd)) {
+			this.cartBookIDs.add(idToAdd);
+			return "Item addded to your cart!";
+		}
+		return "This item is already in your cart.";
 	}
 	
 	public void removeBookFromCart(int idToRemove) {
