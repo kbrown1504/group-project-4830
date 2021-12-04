@@ -78,32 +78,6 @@ public class DBConnection {
 		return rs;		
 	}
 	
-	//TODO: may need ISBN as double or int
-	public static ResultSet advancedSearch(String title, String author, String isbn, double priceLow, double priceHigh, int condition) {
-		ResultSet rs = null;
-		
-		title = "%"+title+"%";
-		author = "%"+author+"%";
-		isbn = "%"+isbn+"%";
-		
-		String sql = String.format("select * from BookListing where Title like '%s' and Author like '%s' and ISBN like '%s'",
-				title, author, isbn);
-		if (connection != null) {
-			try {
-				PreparedStatement prepState = connection.prepareStatement(sql);
-				try {
-					rs = prepState.executeQuery();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}				
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return rs;
-	}
-	
 	public static ResultSet getNewListings() {
 		ResultSet rs = null;
 		
