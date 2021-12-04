@@ -61,6 +61,7 @@ public class Book extends HttpServlet {
 				request.setAttribute("title", book.getTitle());
 				request.setAttribute("author", book.getAuthor());
 				request.setAttribute("isbn", book.getISBN());
+				request.setAttribute("condition", book.getConditionStr());
 				request.setAttribute("info", book.getInfo());
 				
 				//Grab seller and set name

@@ -91,7 +91,8 @@
 		<h1>Title: ${requestScope["title"]}</h1>
 		<h2>Author: ${requestScope["author"]}</h2>
 		<h2>ISBN: ${requestScope["isbn"]}</h2>
-		<h2>Condition: ${requestScope["info"]}</h2>
+		<h2>Condition Rating: ${requestScope["condition"]}</h2>
+		<h2>More Info:</h2> <p>${requestScope["info"]}</p>
 		
 	</div>
 </body>
