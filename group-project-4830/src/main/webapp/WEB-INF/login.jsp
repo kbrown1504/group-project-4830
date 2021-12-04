@@ -63,9 +63,8 @@
             <br><br>           
             <button type="submit">Login</button>
         </form>
+        <a href="/group-project-4830/signUp">No account? Sign up.</a>
     </div>
-    
-    <a href="/group-project-4830/signUp">No account? Sign up.</a>
 
 
 </body>
