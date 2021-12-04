@@ -1,7 +1,10 @@
 
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import datamodels.Account;
 import datamodels.BookListing;
+import datamodels.DataParser;
 
 /**
  * Servlet implementation class Cart
@@ -43,33 +47,45 @@ public class Cart extends HttpServlet {
 			response.sendRedirect("login");
 		} 
 		else {
-			BookListing test1 = new BookListing(0, -1, "Software Engineering", "Ian Sommerville", 9781292096131L, 40.00, 0, 1, "test info");
-			BookListing test2 = new BookListing(0, -1, "Invitation to Cryptology", "Thomas Barr", 9780130889768L, 30.00, 0, 1, "test info");
-			BookListing test3 = new BookListing(0, -1, "Attacking Network Protocols", "James Forshaw", 9781593277505L, 40.00, 0, 1, "test info");
-			ArrayList<BookListing> shoppingCart = new ArrayList<BookListing>();
-			shoppingCart.add(test1);
-			shoppingCart.add(test2);
-			shoppingCart.add(test3);
+			DBConnection.getDBConnection(this.getServletContext());
+			ArrayList<Integer> cartIds = ((Account)request.getSession().getAttribute("user")).getCart();
 			
-			double itemCosts = 0;
-			for (int i = 0; i < shoppingCart.size(); i++)
-			{
-				itemCosts += shoppingCart.get(i).getPrice();
+			ResultSet rs = DBConnection.getCart(cartIds);
+			
+			ArrayList<BookListing> shoppingCart;
+			try {
+				shoppingCart = DataParser.parseBookListing(rs);
+				
+				double itemCosts = 0;
+				for (int i = 0; i < shoppingCart.size(); i++)
+				{
+					itemCosts += shoppingCart.get(i).getPrice();
+				}
+				double tax = itemCosts * 0.07;
+				double shipping = itemCosts * 0.08;
+				double finalCost = itemCosts + tax + shipping;
+				
+				String itemCostsStr = String.format("%.2f", itemCosts);
+				String taxStr = String.format("%.2f", tax);
+				String shippingStr = String.format("%.2f", shipping);
+				String finalCostStr = String.format("%.2f", finalCost);
+				
+				request.setAttribute("itemCosts", itemCostsStr);
+				request.setAttribute("tax", taxStr);
+				request.setAttribute("shipping", shippingStr );
+				request.setAttribute("finalCost", finalCostStr);
+				
+				String booksHtml = "";
+				Iterator<BookListing> bookItr = shoppingCart.iterator();
+				while (bookItr.hasNext()) {
+					booksHtml += bookItr.next().getCardHTML();
+				}
+				
+				request.setAttribute("books", booksHtml);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			double tax = itemCosts * 0.07;
-			double shipping = itemCosts * 0.08;
-			double finalCost = itemCosts + tax + shipping;
-			
-			String itemCostsStr = String.format("%.2f", itemCosts);
-			String taxStr = String.format("%.2f", tax);
-			String shippingStr = String.format("%.2f", shipping);
-			String finalCostStr = String.format("%.2f", finalCost);
-			
-			request.setAttribute("itemCosts", itemCostsStr);
-			request.setAttribute("tax", taxStr);
-			request.setAttribute("shipping", shippingStr );
-			request.setAttribute("finalCost", finalCostStr);
-			request.setAttribute("books", test1.getCardHTML() + test2.getCardHTML() + test3.getCardHTML());
 			
 			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/cart.jsp");
 			view.forward(request, response);

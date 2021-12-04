@@ -44,6 +44,10 @@ public class Account extends DataModel
 		//TODO: implement
 	}
 	
+	public ArrayList<Integer> getCart() {
+		return this.cartBookIDs;
+	}
+	
 	
 	public String getUsername()
 	{
