@@ -10,7 +10,7 @@
 		.appbar {
 			background:#00004e;
 			display:table;
-			height: 90px;a
+			height: 90px;
 			width:100%;
 			position:absolute;
 			top:0;
@@ -53,7 +53,7 @@
 	<br>
 	<div class="window" style="text-align: center">
         <h1>Sign Up</h1>
-        <form action="SignUp" method="post">
+        <form action="signUp" method="post">
             <label for="username">Username:</label>
             <input name="username" size="30" />
             <br>${message}
@@ -66,9 +66,8 @@
             <br><br>
             <button type="submit">Sign Up</button>
         </form>
+        <a href="/group-project-4830/login">Already have an account? Login.</a>
     </div>
-
-	<a href="/group-project-4830/login">Already have an account? Login.</a>
 
 </body>
 

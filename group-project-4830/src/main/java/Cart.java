@@ -1,7 +1,10 @@
 
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,8 +12,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import datamodels.Account;
 import datamodels.BookListing;
+import datamodels.DataParser;
 
 /**
  * Servlet implementation class Cart
@@ -32,36 +38,63 @@ public class Cart extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		response.setContentType("text/html");
-		BookListing test1 = new BookListing(0, -1, "Software Engineering", "Ian Sommerville", 9781292096131L, 40.00, 0, 1, "test info");
-		BookListing test2 = new BookListing(0, -1, "Invitation to Cryptology", "Thomas Barr", 9780130889768L, 30.00, 0, 1, "test info");
-		BookListing test3 = new BookListing(0, -1, "Attacking Network Protocols", "James Forshaw", 9781593277505L, 40.00, 0, 1, "test info");
-		ArrayList<BookListing> shoppingCart = new ArrayList<BookListing>();
-		shoppingCart.add(test1);
-		shoppingCart.add(test2);
-		shoppingCart.add(test3);
 		
-		double itemCosts = 0;
-		for (int i = 0; i < shoppingCart.size(); i++)
-		{
-			itemCosts += shoppingCart.get(i).getPrice();
+		//Check if a user is logged in
+		HttpSession session = request.getSession();
+		Account user = (Account)session.getAttribute("user");
+		if (user == null) {
+			//If they aren't, redirect to login
+			response.sendRedirect("login");
+		} 
+		else {
+			DBConnection.getDBConnection(this.getServletContext());
+			//Grab stored cart IDs from Account Object
+			ArrayList<Integer> cartIds = ((Account)request.getSession().getAttribute("user")).getCartIDs();
+			
+			//Pull books in cart using IDs
+			ResultSet rs = DBConnection.getCart(cartIds);
+			
+			ArrayList<BookListing> shoppingCart;
+			try {
+				//Decode result from DB
+				shoppingCart = DataParser.parseBookListing(rs);
+				//cache decoded cart to use later if needed
+				user.setCart(shoppingCart);
+				
+				double itemCosts = 0;
+				for (int i = 0; i < shoppingCart.size(); i++)
+				{
+					itemCosts += shoppingCart.get(i).getPrice();
+				}
+				double tax = itemCosts * 0.07;
+				double shipping = itemCosts * 0.08;
+				double finalCost = itemCosts + tax + shipping;
+				
+				String itemCostsStr = String.format("%.2f", itemCosts);
+				String taxStr = String.format("%.2f", tax);
+				String shippingStr = String.format("%.2f", shipping);
+				String finalCostStr = String.format("%.2f", finalCost);
+				
+				request.setAttribute("itemCosts", itemCostsStr);
+				request.setAttribute("tax", taxStr);
+				request.setAttribute("shipping", shippingStr );
+				request.setAttribute("finalCost", finalCostStr);
+				
+				String booksHtml = "";
+				Iterator<BookListing> bookItr = shoppingCart.iterator();
+				while (bookItr.hasNext()) {
+					booksHtml += bookItr.next().getCardHTML();
+				}
+				
+				request.setAttribute("books", booksHtml);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/cart.jsp");
+			view.forward(request, response);
 		}
-		double tax = itemCosts * 0.07;
-		double shipping = itemCosts * 0.08;
-		double finalCost = itemCosts + tax + shipping;
-		
-		String itemCostsStr = String.format("%.2f", itemCosts);
-		String taxStr = String.format("%.2f", tax);
-		String shippingStr = String.format("%.2f", shipping);
-		String finalCostStr = String.format("%.2f", finalCost);
-		
-		request.setAttribute("itemCosts", itemCostsStr);
-		request.setAttribute("tax", taxStr);
-		request.setAttribute("shipping", shippingStr );
-		request.setAttribute("finalCost", finalCostStr);
-		request.setAttribute("books", test1.getCardHTML() + test2.getCardHTML() + test3.getCardHTML());
-		
-		RequestDispatcher view = request.getRequestDispatcher("cart.jsp");
-		view.forward(request, response);
 	}
 
 	/**
