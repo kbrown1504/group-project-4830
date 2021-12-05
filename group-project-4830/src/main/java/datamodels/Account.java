@@ -57,7 +57,12 @@ public class Account extends DataModel
 	public void setCart(ArrayList<BookListing> cart) {
 		this.cartBooks = cart;
 	}
-	
+	public void resetCarts() {
+		this.cartBookIDs = null;
+		this.cartBookIDs = new ArrayList<Integer>();
+		this.cartBooks = null;
+		this.cartBooks = new ArrayList<BookListing>();
+	}
 	
 	public String getUsername()
 	{

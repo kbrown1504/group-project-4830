@@ -64,6 +64,7 @@
 	</nav>
 	
 	<div class="filterPane">
+		<h2 style="color:red">${requestScope["message"]}</h2>
 		<form action="OrderConfirmation" method="POST">
 			<h2>Shipping/Billing Address</h2>
 			<pre>Full Name: <input class="searchText" type="text" name="fullName"></pre> <br />
