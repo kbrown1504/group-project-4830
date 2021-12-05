@@ -68,11 +68,11 @@ public class OrderConfirmation extends HttpServlet {
 		
 		//Insert Order to DB
 		DBConnection.getDBConnection(this.getServletContext());
-		boolean result = false;
+		int result = 0;
 		if(DBConnection.connection != null) {
 			try {
 				PreparedStatement insert = newOrder.create(DBConnection.connection);
-				result = insert.execute();
+				result = insert.executeUpdate();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -81,7 +81,7 @@ public class OrderConfirmation extends HttpServlet {
 		
 		//If successful, grab order from DB
 		//Change OrderID field of books in cart
-		if (result) {
+		if (result > 0) {
 			ResultSet orderResult = DBConnection.getRecentOrder(buyerID);
 			try {
 				Order order = DataParser.parseOrder(orderResult).get(0);
