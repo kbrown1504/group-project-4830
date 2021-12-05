@@ -52,45 +52,50 @@ public class Cart extends HttpServlet {
 			ArrayList<Integer> cartIds = ((Account)request.getSession().getAttribute("user")).getCartIDs();
 			
 			//Pull books in cart using IDs
-			ResultSet rs = DBConnection.getCart(cartIds);
-			
-			ArrayList<BookListing> shoppingCart;
-			try {
-				//Decode result from DB
-				shoppingCart = DataParser.parseBookListing(rs);
-				//cache decoded cart to use later if needed
-				user.setCart(shoppingCart);
-				
-				double itemCosts = 0;
-				for (int i = 0; i < shoppingCart.size(); i++)
-				{
-					itemCosts += shoppingCart.get(i).getPrice();
+			if (cartIds.size() > 0) {
+				ResultSet rs = DBConnection.getCart(cartIds);
+				ArrayList<BookListing> shoppingCart;
+				try {
+					//Decode result from DB
+					shoppingCart = DataParser.parseBookListing(rs);
+					//cache decoded cart to use later if needed
+					user.setCart(shoppingCart);
+					
+					double itemCosts = 0;
+					for (int i = 0; i < shoppingCart.size(); i++)
+					{
+						itemCosts += shoppingCart.get(i).getPrice();
+					}
+					double tax = itemCosts * 0.07;
+					double shipping = itemCosts * 0.08;
+					double finalCost = itemCosts + tax + shipping;
+					
+					String itemCostsStr = String.format("%.2f", itemCosts);
+					String taxStr = String.format("%.2f", tax);
+					String shippingStr = String.format("%.2f", shipping);
+					String finalCostStr = String.format("%.2f", finalCost);
+					
+					request.setAttribute("itemCosts", itemCostsStr);
+					request.setAttribute("tax", taxStr);
+					request.setAttribute("shipping", shippingStr );
+					request.setAttribute("finalCost", finalCostStr);
+					
+					String booksHtml = "";
+					Iterator<BookListing> bookItr = shoppingCart.iterator();
+					while (bookItr.hasNext()) {
+						booksHtml += bookItr.next().getCardHTML();
+					}
+					
+					request.setAttribute("books", booksHtml);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				double tax = itemCosts * 0.07;
-				double shipping = itemCosts * 0.08;
-				double finalCost = itemCosts + tax + shipping;
-				
-				String itemCostsStr = String.format("%.2f", itemCosts);
-				String taxStr = String.format("%.2f", tax);
-				String shippingStr = String.format("%.2f", shipping);
-				String finalCostStr = String.format("%.2f", finalCost);
-				
-				request.setAttribute("itemCosts", itemCostsStr);
-				request.setAttribute("tax", taxStr);
-				request.setAttribute("shipping", shippingStr );
-				request.setAttribute("finalCost", finalCostStr);
-				
-				String booksHtml = "";
-				Iterator<BookListing> bookItr = shoppingCart.iterator();
-				while (bookItr.hasNext()) {
-					booksHtml += bookItr.next().getCardHTML();
-				}
-				
-				request.setAttribute("books", booksHtml);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
+			else {
+				request.setAttribute("hideCheckout", "hidden");
+			}
+			
 			
 			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/cart.jsp");
 			view.forward(request, response);
