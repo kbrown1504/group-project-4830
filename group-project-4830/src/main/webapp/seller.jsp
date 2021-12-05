@@ -75,6 +75,7 @@
 		<div class=nav-button>
 			<button onclick="window.location.href='home'" style="height:50px;">Home</button>
 			<button onclick="window.location.href='Cart'" style="height:50px;">Cart</button>
+			<button onclick="window.location.href='User'" style="height:50px;">Account</button>
 		</div>
 	</nav>
 	<div class="window">

@@ -74,14 +74,15 @@
 		<div class=nav-button>
 			<button onclick="window.location.href='home'" style="height:50px;">Home</button>
 			<button onclick="window.location.href='Cart'" style="height:50px;">Cart</button>
+			<button onclick="window.location.href='User'" style="height:50px;">Account</button>
 		</div>
 	</nav>
 	<div class="window">
                 <img src="https://pbs.twimg.com/profile_images/1450689526863704066/6xFTUTxk_400x400.jpg" height=200 style="float:left;border:5px solid slateblue;margin-right:10px;">
                 
-		<h1 style="font-size:60px;">${requestScope["userName"]}</h1>
+		<h1 style="font-size:60px;">${requestScope["sellerName"]}</h1>
 		<hr>
-                        <h1>Email: ${requestScope["userEmail"]}</h1>
+            <h1>Email: ${requestScope["sellerEmail"]}</h1>
 		<hr>
 		<div class="listings">
 			<h2>My Listings</h2>
