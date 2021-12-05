@@ -100,6 +100,8 @@ public class OrderConfirmation extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			//TODO: Redirect to Page showing Placed Order?
+			response.sendRedirect("home");
 		}
 		//If insert fails, throw an error message.
 		else {
