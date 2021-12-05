@@ -66,7 +66,6 @@ public class AdvancedSearch extends HttpServlet {
 		String priceMax = request.getParameter("priceMax");
 		String conditionMin = request.getParameter("conditionMin");
 		String conditionMax = request.getParameter("conditionMax");
-		String seller = request.getParameter("seller");
 		
 		response.setContentType("text/html");
 		Connection connection = null;
