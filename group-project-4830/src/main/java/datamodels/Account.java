@@ -44,7 +44,8 @@ public class Account extends DataModel
 	}
 	
 	public void removeBookFromCart(int idToRemove) {
-		//TODO: implement
+		boolean success = this.cartBookIDs.remove((Integer)idToRemove);
+		System.out.println("Success: " + success);
 	}
 	
 	public ArrayList<Integer> getCartIDs() {		

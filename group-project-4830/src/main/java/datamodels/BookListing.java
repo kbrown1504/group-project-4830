@@ -60,11 +60,12 @@ public class BookListing extends DataModel
 				+ "<h3>Author: %s</h3>"
 				+ "<h3>ISBN: %d</h3>"
 				+ "</div>"
-				+ "<form style=\"position:absolute;right:20px;top:20px;\">"
-				+ "<input type=\"submit\" value=\"Remove from Cart\" method=\"POST\">"
+				+ "<form action=\"Cart\" method=\"POST\" style=\"position:absolute;right:20px;top:20px;\">"
+				+ "<input hidden type=\"number\" name=\"id\" value=%d>"
+				+ "<input type=\"submit\" value=\"Remove from Cart\">"
 				+ "</form>"
 				+ "</div>",
-				"https://cdn-icons-png.flaticon.com/512/224/224641.png", "200", id, title, price, author, isbn
+				"https://cdn-icons-png.flaticon.com/512/224/224641.png", "200", id, title, price, author, isbn, id
 				);
 		return htmlStr;
 	}

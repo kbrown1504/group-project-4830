@@ -107,6 +107,14 @@ public class Cart extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		Account user = (Account) session.getAttribute("user");
+		int idToRemove = Integer.parseInt(request.getParameter("id"));
+		System.out.println("ID: " + idToRemove);
+		user.removeBookFromCart(idToRemove);
+		
+		//session.setAttribute("user", user);
+		
 		doGet(request, response);
 	}
 
