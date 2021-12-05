@@ -89,13 +89,9 @@ public class Account extends DataModel
 		return password;
 	}
 	
-	public void setPassoword(String pw)
+	public void setPassword(String pw)
 	{
 		password = pw;
 	}
 
-	public String toString()
-	{
-		return id + " " + username + " " + email + " " + password + "\n";
-	}
 }
