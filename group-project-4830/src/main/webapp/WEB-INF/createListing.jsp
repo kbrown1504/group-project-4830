@@ -16,12 +16,12 @@
 			padding:0px;
 			
 		}
-		.searchText 
+		.createText 
 		{
 			width:230px;
 			margin-left:5px;
 		}
-		.searchNum
+		.createNum
 		{
 			width:100px;
 			margin-left:5px
@@ -43,7 +43,7 @@
 			margin-right:auto;
 			width:70%;
 		}
-		.filterPane
+		.createPane
 		{
 			position:relative;
 			margin-top: 110px;
@@ -56,7 +56,7 @@
 
 <body>
 	<nav class="appbar">
-		<h1 style="color:#ffffff; margin:10px;">BookWorms - Order Confirmation</h1>
+		<h1 style="color:#ffffff; margin:10px;">BookWorms - Create a Book Listing</h1>
 		<div class=nav-button>
 			<button onclick="window.location.href='home'" style="height:50px;">Home</button>
 			<button onclick="window.location.href='User'" style="height:50px;">Account</button>
@@ -64,22 +64,21 @@
 		</div>
 	</nav>
 	
-	<div class="filterPane">
-		<h2 style="color:red">${requestScope["message"]}</h2>
-		<form action="OrderConfirmation" method="POST">
-			<h2>Shipping/Billing Address</h2>
-			<pre>Full Name: <input class="searchText" type="text" name="fullName"></pre> <br />
-			<pre>Street Address: <input class="searchText" type="text" name="streetAddress"> City: <input class="searchText" type="text" name="city"></pre> <br />
-			<pre>State: <input class="searchText" type="text" name="state"> Zip Code: <input class="searchText" type="text" name="zipcode"></pre> <br />
-			<hr>
-			<h2>Payment Info</h2>
-			<pre>Card Number: <input class="searchText" type="text" name="cardNumber"></pre> <br />
-			<pre>Name on Card: <input class="searchText" type="text" name="nameOnCard"></pre> <br />
-			<pre>Expiration Date: <input class="searchText" type="text" name="expirationDate" placeholder="MM/YYYY"></pre> <br />
+	<div class="createPane">
+		<h2>Enter the Following Information About Your Book</h2>
+		<form action="createListing" method="POST">
+			<pre>Title: <input class="createText" type="text" name="title"></pre> <br />
+			<pre>Author: <input class="createText" type="text" name="author"></pre> <br />
+			<pre>ISBN:  <input class="createText" type="text" name="isbn"></pre> <br />
+			<pre>Price: <input class="createNum" type="text" name="price"> </pre> <br />
+			<pre>Condition: <input class="createNum" type="text" name="condition"></pre> <br />
+			<pre>Additional Information: <input class="createText" type="text" name="addinfo"></pre> <br />
 			<input type="submit" value="Submit"/>
 		</form>
 		<hr>
+		<br>${message}
 	</div>
+	
 </body>
 
 </html>

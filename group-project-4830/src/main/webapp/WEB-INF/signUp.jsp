@@ -53,7 +53,7 @@
 	<br>
 	<div class="window" style="text-align: center">
         <h1>Sign Up</h1>
-        <form action="SignUp" method="post">
+        <form action="signUp" method="post">
             <label for="username">Username:</label>
             <input name="username" size="30" />
             <br>${message}
