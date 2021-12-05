@@ -25,7 +25,6 @@ public class User extends HttpServlet {
      */
     public User() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -33,21 +32,16 @@ public class User extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
+		
 		//https://stackoverflow.com/questions/38239554/java-web-servlet-writing-plain-text-on-an-existing-html-template-file
 		request.setAttribute("pageTitle", "My Account");
 		
-<<<<<<< HEAD
 		String i = request.getParameter("id");
-		//int id = Integer.parseInt(i);
-		
-		//Placeholder Info until db connects listings
-		BookListing test1 = new BookListing(0, -1, "Software Engineering", "Ian Sommerville", 9781292096131L, 40.00, 0, 1, "test info");
-		request.setAttribute("sellerBooks", test1.getCardHTML());
-		request.setAttribute("sellerName", "John Doe");
+		int id = Integer.parseInt(i);
 		
 		RequestDispatcher view = request.getRequestDispatcher("user.jsp");
 		view.forward(request, response);
-=======
+		
 		//Check if a user is logged in
 		HttpSession session = request.getSession();
 		Account user = (Account)session.getAttribute("user");
@@ -56,25 +50,25 @@ public class User extends HttpServlet {
 			response.sendRedirect("login");
 		} 
 		else {
-			String i = request.getParameter("id");
-			int id = Integer.parseInt(i);
+			i = request.getParameter("id");
+			id = Integer.parseInt(i);
 			
 			//Placeholder Info until db connects listings
-			BookListing test1 = new BookListing(0, -1, "Software Engineering", "Ian Sommerville", 9781292096131L, 40.00, 0, 1, "test info");
-			request.setAttribute("userBooks", test1.getCardHTML());
+			BookListing test11 = new BookListing(0, -1, "Software Engineering", "Ian Sommerville", 9781292096131L, 40.00, 0, 1, "test info");
+			request.setAttribute("userBooks", test11.getCardHTML());
 			request.setAttribute("userName", "John Doe");
 			
-			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/user.jsp");
+			view = request.getRequestDispatcher("WEB-INF/user.jsp");
 			view.forward(request, response);
 		}
->>>>>>> branch 'master' of https://github.com/kbrown1504/group-project-4830.git
+		int placeholder = id;
+		System.out.println(placeholder);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

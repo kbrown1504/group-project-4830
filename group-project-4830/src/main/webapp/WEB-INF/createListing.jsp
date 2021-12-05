@@ -59,6 +59,7 @@
 		<h1 style="color:#ffffff; margin:10px;">BookWorms - Create a Book Listing</h1>
 		<div class=nav-button>
 			<button onclick="window.location.href='home'" style="height:50px;">Home</button>
+			<button onclick="window.location.href='User'" style="height:50px;">Account</button>
 			<button onclick="window.location.href='Cart'" style="height:50px;">Cart</button>
 		</div>
 	</nav>
