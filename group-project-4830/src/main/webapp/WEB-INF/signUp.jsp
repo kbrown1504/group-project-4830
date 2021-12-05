@@ -10,7 +10,7 @@
 		.appbar {
 			background:#00004e;
 			display:table;
-			height: 90px;a
+			height: 90px;
 			width:100%;
 			position:absolute;
 			top:0;
@@ -66,9 +66,8 @@
             <br><br>
             <button type="submit">Sign Up</button>
         </form>
+        <a href="/group-project-4830/login">Already have an account? Login.</a>
     </div>
-
-	<a href="/group-project-4830/login">Already have an account? Login.</a>
 
 </body>
 

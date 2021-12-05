@@ -3,6 +3,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.servlet.ServletContext;
 
@@ -74,32 +76,6 @@ public class DBConnection {
 		}
 		
 		return rs;		
-	}
-	
-	//TODO: may need ISBN as double or int
-	public static ResultSet advancedSearch(String title, String author, String isbn, double priceLow, double priceHigh, int condition) {
-		ResultSet rs = null;
-		
-		title = "%"+title+"%";
-		author = "%"+author+"%";
-		isbn = "%"+isbn+"%";
-		
-		String sql = String.format("select * from BookListing where Title like '%s' and Author like '%s' and ISBN like '%s'",
-				title, author, isbn);
-		if (connection != null) {
-			try {
-				PreparedStatement prepState = connection.prepareStatement(sql);
-				try {
-					rs = prepState.executeQuery();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}				
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return rs;
 	}
 	
 	public static ResultSet getNewListings() {
@@ -184,6 +160,33 @@ public class DBConnection {
 	public static ResultSet getSellerReviews(int sellerID) {
 		ResultSet rs = null;
 		String sql = "Select * from Reviews where SellerID = " + sellerID;
+		
+		if (connection != null) {
+			try {
+				PreparedStatement prepState = connection.prepareStatement(sql);
+				try {
+					rs = prepState.executeQuery();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return rs;
+	}
+	
+	public static ResultSet getCart(ArrayList<Integer> ids) {
+		ResultSet rs = null;
+		String sql = "Select * from BookListing where ID=";
+		
+		Iterator<Integer> itr = ids.iterator();
+		//Process first ID
+		sql = sql + itr.next();
+		while (itr.hasNext()) {
+			sql += " OR ID=" + itr.next() + " ";
+		}
 		
 		if (connection != null) {
 			try {

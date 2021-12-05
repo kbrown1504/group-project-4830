@@ -113,6 +113,22 @@ public class BookListing extends DataModel
 	{
 		return condition;
 	}
+	public String getConditionStr() {
+		switch (this.condition) {
+			case 1:
+				return "Poor";
+			case 2:
+				return "Average";
+			case 3:
+				return "Good";
+			case 4:
+				return "Very Good";
+			case 5:
+				return "Like New";	
+			default:
+				return "None Specified";
+		}
+	}
 	
 	public void setCondition(int cond)
 	{

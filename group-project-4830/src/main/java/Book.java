@@ -61,6 +61,7 @@ public class Book extends HttpServlet {
 				request.setAttribute("title", book.getTitle());
 				request.setAttribute("author", book.getAuthor());
 				request.setAttribute("isbn", book.getISBN());
+				request.setAttribute("condition", book.getConditionStr());
 				request.setAttribute("info", book.getInfo());
 				
 				//Grab seller and set name
@@ -83,7 +84,16 @@ public class Book extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		HttpSession session = request.getSession();
+		Account user = (Account)session.getAttribute("user");
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		System.out.println("ID: "+ id);
+		
+		String message = user.addBookToCart(id);
+		request.setAttribute("message", message);
+		
 		doGet(request, response);
 	}
 
