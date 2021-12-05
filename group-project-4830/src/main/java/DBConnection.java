@@ -8,6 +8,8 @@ import java.util.Iterator;
 
 import javax.servlet.ServletContext;
 
+import datamodels.BookListing;
+
 public class DBConnection {
 	
 	static Connection connection = null;
@@ -33,12 +35,6 @@ public class DBConnection {
 	public static void getDBConnection(ServletContext context) {
 		servletContext = context;
 		getDBConnection();
-	}
-	
-	//TODO: Remove? I think we don't need this method
-	public static boolean insert(Object obj, String tableName) {
-		//TODO: Implement
-		return false;
 	}
 	
 	//TODO: may need ISBN as double or int
@@ -202,6 +198,53 @@ public class DBConnection {
 		}
 		
 		return rs;
+	}
+	
+	public static ResultSet getRecentOrder(int userID) {
+		ResultSet rs = null;
+		String sql = "Select * from Orders where BuyerID=" + userID + " ORDER BY ID DESC LIMIT 1";
+		
+		if (connection != null) {
+			try {
+				PreparedStatement prepState = connection.prepareStatement(sql);
+				try {
+					rs = prepState.executeQuery();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return rs;
+	}
+	public static int updateBooks(ArrayList<BookListing> books, int orderID) {
+		int rowsAffected = 0;
+		
+		Iterator<BookListing> itr = books.iterator();
+		String sql = "Update BookListing SET OrderID=" + orderID + " WHERE ";
+		while (itr.hasNext()) {
+			int bookID = itr.next().getID();
+			sql += "ID=" + bookID;
+			if(itr.hasNext()) {
+				sql += " OR ";
+			}
+		}
+		if (connection != null) {
+			try {
+				PreparedStatement prepState = connection.prepareStatement(sql);
+				try {
+					rowsAffected += prepState.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return rowsAffected;
 	}
 	
 	static String getURL() {
