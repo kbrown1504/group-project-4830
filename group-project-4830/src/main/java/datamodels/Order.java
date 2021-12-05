@@ -24,8 +24,8 @@ public class Order extends DataModel
 	//Return some kind of object that is html friendly format of data fields of this.object
 	public String getHTML()
 	{
-		String temp = "HTML or itemized return of Order object";
-		return temp;
+		//TODO
+		return "";
 	}	
 
 	//Get search statement to pull Book
