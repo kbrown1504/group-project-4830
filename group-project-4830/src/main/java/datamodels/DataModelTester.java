@@ -22,5 +22,47 @@ public class DataModelTester {
 		assertEquals(a.getEmail(), "Email2");
 		assertEquals(a.getPassword(), "Pass2");
 	}
+	
+	@Test
+	public void testBookListingAll() {
+		BookListing a = new BookListing(0, 0, "Assertions", "Paul Watson", 9871234213323L, 20.33, 15, 4, "Blah blah description");
+		assertEquals(a.getID(), 0);
+		assertEquals(a.getOrderID(), 0);
+		assertEquals(a.getTitle(), "Assertions");
+		assertEquals(a.getAuthor(), "Paul Watson");
+		assertEquals(a.getISBN(),9871234213323L);
+		assertEquals(a.getPrice(), 20.33, 0);
+		assertEquals(a.getSellerID(), 15);
+		assertEquals(a.getCondition(), 4);
+		assertEquals(a.getInfo(), "Blah blah description");
+		a.setOrderID(1);
+		a.setTitle("Desertions");
+		a.setAuthor("Walle Paulford");
+		a.setISBN(9871234567890L);
+		a.setPrice(78.33);
+		a.setSellerID(12);
+		a.setCondition(3);
+		a.setInfo(null);
+		assertEquals(a.getOrderID(), 1);
+		assertEquals(a.getTitle(), "Desertions");
+		assertEquals(a.getAuthor(), "Walle Paulford");
+		assertEquals(a.getISBN(),9871234567890L);
+		assertEquals(a.getPrice(), 78.33, 0);
+		assertEquals(a.getSellerID(), 12);
+		assertEquals(a.getCondition(), 3);
+		assertEquals(a.getInfo(), null);
+		a.setCondition(1);
+		assertEquals(a.getConditionStr(), "Poor");
+		a.setCondition(2);
+		assertEquals(a.getConditionStr(), "Average");
+		a.setCondition(3);
+		assertEquals(a.getConditionStr(), "Good");
+		a.setCondition(4);
+		assertEquals(a.getConditionStr(), "Very Good");
+		a.setCondition(5);
+		assertEquals(a.getConditionStr(), "Like New");
+		a.setCondition(0);
+		assertEquals(a.getConditionStr(), "None Specified");
+	}
 
 }
