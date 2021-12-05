@@ -16,8 +16,8 @@ public class Order extends DataModel
 	//Create mySQL statement from object
 	public PreparedStatement create(Connection con) throws SQLException
 	{
-		PreparedStatement temp = con.prepareStatement(" INSERT INTO Orders ( ID, BuyerID, ShippingAddress) "
-				+ "values (default, " + buyerID + " ," + shippingAddress + ")");
+		PreparedStatement temp = con.prepareStatement("INSERT INTO Orders (ID, BuyerID, ShippingAddress) "
+				+ "values (default, " + buyerID + ", '" + shippingAddress + "')");
 		return temp;
 	}
 	
