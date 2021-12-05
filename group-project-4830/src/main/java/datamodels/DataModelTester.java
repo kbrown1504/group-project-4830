@@ -76,4 +76,23 @@ public class DataModelTester {
 		a.setShippingAddress("456 Sure Way");
 		assertEquals(a.getShippingAddress(), "456 Sure Way");
 	}
+	
+	@Test
+	public void testReviewAll()
+	{
+		Review a = new Review(0, 12, 13, 5, "Good stuff");
+		assertEquals(a.getID(), 0);
+		assertEquals(a.getSellerID(), 12);
+		assertEquals(a.getBuyerID(), 13);
+		assertEquals(a.getRating(), 5);
+		assertEquals(a.getReviewText(), "Good stuff");
+		a.setSellerID(15);
+		assertEquals(a.getSellerID(), 15);
+		a.setBuyerID(19);
+		assertEquals(a.getBuyerID(), 19);
+		a.setRating(2);
+		assertEquals(a.getRating(), 2);
+		a.setReviewText("Bad stuff");
+		assertEquals(a.getReviewText(), "Bad stuff");
+	}
 }
