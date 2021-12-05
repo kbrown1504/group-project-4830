@@ -72,6 +72,7 @@ public class OrderConfirmation extends HttpServlet {
 		if(DBConnection.connection != null) {
 			try {
 				PreparedStatement insert = newOrder.create(DBConnection.connection);
+				System.out.println(insert.toString());
 				result = insert.execute();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -107,6 +108,8 @@ public class OrderConfirmation extends HttpServlet {
 		else {
 			System.out.println("DEBUG: Insert of Order failed");
 			request.setAttribute("message", "Order placement failed, please try again");
+			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/orderConfirmation.jsp");
+			view.forward(request, response);
 		}
 	}
 
