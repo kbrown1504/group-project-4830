@@ -65,4 +65,15 @@ public class DataModelTester {
 		assertEquals(a.getConditionStr(), "None Specified");
 	}
 
+	@Test
+	public void testOrderAll() {
+		Order a = new Order(0, 10, "123 Whynot Lane");
+		assertEquals(a.getID(), 0);
+		assertEquals(a.getBuyerID(), 10);
+		assertEquals(a.getShippingAddress(), "123 Whynot Lane");
+		a.setBuyerID(5);
+		assertEquals(a.getBuyerID(), 5);
+		a.setShippingAddress("456 Sure Way");
+		assertEquals(a.getShippingAddress(), "456 Sure Way");
+	}
 }
