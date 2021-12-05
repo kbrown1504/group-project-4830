@@ -24,8 +24,8 @@ public class BookListing extends DataModel
 	public PreparedStatement create(Connection con) throws SQLException
 	{
 		PreparedStatement temp = con.prepareStatement(" INSERT INTO BookListing ( ID, OrderID, Title, Author, ISBN, Price, Seller, Quality"
-				+ ", AddInfo) values (default, " + orderID + " ," + title + " ," + author + " ," + isbn + " ," + price + " ," + sellerID 
-				+ " ," + condition + " ," + info + ");");
+				+ ", AddInfo) VALUES (default, " + orderID + ", \'" + title + "\', \'" + author + "\', " + isbn + ", " + price + ", " + sellerID 
+				+ ", " + condition + ", \'" + info + "\');");
 		return temp;
 	}
 	
@@ -112,6 +112,22 @@ public class BookListing extends DataModel
 	public int getCondition()
 	{
 		return condition;
+	}
+	public String getConditionStr() {
+		switch (this.condition) {
+			case 1:
+				return "Poor";
+			case 2:
+				return "Average";
+			case 3:
+				return "Good";
+			case 4:
+				return "Very Good";
+			case 5:
+				return "Like New";	
+			default:
+				return "None Specified";
+		}
 	}
 	
 	public void setCondition(int cond)

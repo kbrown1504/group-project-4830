@@ -54,12 +54,13 @@
 			</select>
 			<input class=search type="text" name="search" placeholder="Search for a book by category...">
 			<input type=submit value=Search name=submit>
-			<input type="submit" value="Advanced Search" formaction="advancedSearch.jsp">
+			<input type="submit" value="Advanced Search" formaction="advancedSearch" formmethod="GET">
 			</form>
 			
 		</div>
 		<div class=nav-button>
 			<button onclick="window.location.href='home'" style="height:50px;">Home</button>
+			<button onclick="window.location.href='User'" style="height:50px;">Account</button>
 			<button onclick="window.location.href='Cart'" style="height:50px;">Cart</button>
 		</div>
 	</nav>

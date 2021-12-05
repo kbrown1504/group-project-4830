@@ -43,13 +43,6 @@
 			margin-right:auto;
 			width:60%;
 		}
-		.priceCard{
-			float: right;
-			padding: 10px;
-			border-radius:20px;
-			box-shadow: 5px 5px 3px #aaaaaa;
-			border: 1px solid #aaaaaa;
-		}
 	</style>
 </head>
 
@@ -59,33 +52,36 @@
 		<div class="forms">
 			<form action="search" method="POST">
 			<select class="dropdown" name="categories" id="categories">
-				<option value="TITLE" ${requestScope["titleSelected"]}>Title</option>
-				<option value="AUTHOR" ${requestScope["authorSelected"]}>Author</option>
-				<option value="ISBN" ${requestScope["isbnSelected"]}>ISBN</option>
+				<option value="TITLE">Title</option>
+				<option value="AUTHOR">Author</option>
+				<option value="ISBN">ISBN</option>
 			</select>
-			<input class=search type="text" name="search" placeholder="Search for a book by category..." value="${requestScope["search"]}">
+			<input class=search type="text" name="search" placeholder="Search for a book by category...">
 			<input type=submit value=Search name=submit>
-			<input type="submit" value="Advanced Search" formaction="advancedSearch.jsp">
+			<input type="submit" value="Advanced Search" formaction="advancedSearch" formmethod="GET">
 			</form>
 			
 		</div>
 		<div class=nav-button>
 			<button onclick="window.location.href='home'" style="height:50px;">Home</button>
+			<button onclick="window.location.href='User'" style="height:50px;">Account</button>
+			<button onclick="window.location.href='createListing'" style="height:50px;">Create a Listing</button>
 			<button onclick="window.location.href='Cart'" style="height:50px;">Cart</button>
 		</div>
 	</nav>
 	<div class="window">
-		<h1>${requestScope["sellerName"]}</h1>
+		<h2>Welcome to BookWorms!</h2>
+		<p>
+			BookWorms is a web-based textbook sale platform designed for students by students.
+			For many college students, textbooks can be a large expense. Especially when those
+			books are only used for a single semester. BookWorms seeks to connect students
+			who want to sell old textbooks with students looking for a cheaper alternative to buying textbooks
+			from a retailer. To get started, search by title, author, or ISBN in the search bar
+			above!
+		</p>
 		<hr>
-		<div>
-			<h2>Reviews</h2>
-			${requestScope["reviews"]}
-		</div>
-		<hr>
-		<div>
-			<h2>Current Listings</h2>
-			${requestScope["sellerBooks"]}
-		</div>
+		<h2>New Listings</h2>
+		${requestScope["books"]}
 	</div>
 </body>
 

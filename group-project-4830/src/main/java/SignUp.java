@@ -13,7 +13,7 @@ import javax.servlet.http.*;
 
 import datamodels.Account;
  
-@WebServlet("/SignUp")
+@WebServlet("/signUp")
 public class SignUp extends HttpServlet {
     private static final long serialVersionUID = 1L;
  
@@ -32,7 +32,8 @@ public class SignUp extends HttpServlet {
         if (!Character.isLetterOrDigit(c) || password.length() == 0)
         {
         	request.setAttribute("message", "Password contains an invalid character, must be letter or number");
-        	RequestDispatcher dispatcher = request.getRequestDispatcher("signUp.jsp");
+        	
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/signUp.jsp");
             dispatcher.forward(request, response);
             return; //Early exit
         }
@@ -56,12 +57,14 @@ public class SignUp extends HttpServlet {
     			user = pUser.get(0);
     		}
 
-            String destPage = "signUp.jsp";
+            String destPage = "WEB-INF/signUp.jsp";
              
             //User already exists
             if (user != null) {
             	String message = "Username already in use";
                 request.setAttribute("message", message);
+                RequestDispatcher dispatcher = request.getRequestDispatcher(destPage);
+                dispatcher.forward(request, response);
                 
             } 
             //User does not exist
@@ -75,13 +78,12 @@ public class SignUp extends HttpServlet {
             	user = DataParser.parseAccount(rs).get(0);
             	HttpSession session = request.getSession();
                 session.setAttribute("user", user);
-                destPage = "home.jsp";
+                destPage = "home";
+                
+                response.sendRedirect(destPage);
             }
             
             connection.close();
-             
-            RequestDispatcher dispatcher = request.getRequestDispatcher(destPage);
-            dispatcher.forward(request, response);
              
         } catch (SQLException ex) {
             throw new ServletException(ex);
@@ -93,7 +95,7 @@ public class SignUp extends HttpServlet {
 		//https://stackoverflow.com/questions/38239554/java-web-servlet-writing-plain-text-on-an-existing-html-template-file
 		request.setAttribute("pageTitle", "Sign Up");
 		
-		RequestDispatcher view = request.getRequestDispatcher("signUp.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/signUp.jsp");
 		view.forward(request, response);
 	}
 }

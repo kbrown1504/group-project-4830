@@ -1,6 +1,4 @@
-<!-
-//https://stackoverflow.com/questions/38239554/java-web-servlet-writing-plain-text-on-an-existing-html-template-file 
-!->
+
 
 <!DOCTYPE html PUBLIC>
 <html>
@@ -43,13 +41,6 @@
 			margin-right:auto;
 			width:60%;
 		}
-		.priceCard{
-			float: right;
-			padding: 10px;
-			border-radius:20px;
-			box-shadow: 5px 5px 3px #aaaaaa;
-			border: 1px solid #aaaaaa;
-		}
 	</style>
 </head>
 
@@ -65,31 +56,20 @@
 			</select>
 			<input class=search type="text" name="search" placeholder="Search for a book by category..." value="${requestScope["search"]}">
 			<input type=submit value=Search name=submit>
-			<input type="submit" value="Advanced Search" formaction="advancedSearch.jsp">
+			<input type="submit" value="Advanced Search" formaction="advancedSearch" formmethod="GET">
 			</form>
 			
 		</div>
 		<div class=nav-button>
 			<button onclick="window.location.href='home'" style="height:50px;">Home</button>
+			<button onclick="window.location.href='User'" style="height:50px;">Account</button>
 			<button onclick="window.location.href='Cart'" style="height:50px;">Cart</button>
 		</div>
 	</nav>
 	<div class="window">
-		<h2>Listing Details</h2>
+		<h2>Search Results</h2>
 		<hr>
-		<img src="https://cdn-icons-png.flaticon.com/512/224/224641.png" height=200 style="float:left;margin-right:10px;">
-		
-		<div class="priceCard">
-			<h1>$${requestScope["price"]}</h1>
-			<h2>Seller: <a href=${requestScope["sellerURL"]}>${requestScope["seller"]}</a></h2>
-			<button>Add to Cart</button>
-		</div>
-		
-		<h1>Title: ${requestScope["title"]}</h1>
-		<h2>Author: ${requestScope["author"]}</h2>
-		<h2>ISBN: ${requestScope["isbn"]}</h2>
-		<h2>Condition: ${requestScope["info"]}</h2>
-		
+		${requestScope["searchResults"]}
 	</div>
 </body>
 

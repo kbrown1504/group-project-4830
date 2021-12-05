@@ -16,12 +16,12 @@
 			padding:0px;
 			
 		}
-		.searchText 
+		.createText 
 		{
 			width:230px;
 			margin-left:5px;
 		}
-		.searchNum
+		.createNum
 		{
 			width:100px;
 			margin-left:5px
@@ -43,7 +43,7 @@
 			margin-right:auto;
 			width:70%;
 		}
-		.filterPane
+		.createPane
 		{
 			position:relative;
 			margin-top: 110px;
@@ -56,28 +56,29 @@
 
 <body>
 	<nav class="appbar">
-		<h1 style="color:#ffffff; margin:10px;">BookWorms - Advanced Search</h1>
+		<h1 style="color:#ffffff; margin:10px;">BookWorms - Create a Book Listing</h1>
 		<div class=nav-button>
 			<button onclick="window.location.href='home'" style="height:50px;">Home</button>
+			<button onclick="window.location.href='User'" style="height:50px;">Account</button>
 			<button onclick="window.location.href='Cart'" style="height:50px;">Cart</button>
 		</div>
 	</nav>
 	
-	<div class="filterPane">
-		<h2>Filtering Options</h2>
-		<form action="AdvancedSearch" method="POST">
-			<pre>Title: <input class="searchText" type="text" name="title"> Author: <input class="searchText" type="text" name="author"></pre> <br />
-			<pre>ISBN:  <input class="searchText" type="text" name="isbn"></pre> <br />
-			<pre>Price: <input class="searchNum" type="text" name="priceMin" placeholder="minimum"> to <input class="searchNum" type="text" name="priceMax" placeholder="maximum"></pre> <br />
-			<pre>Condition: <input class="searchNum" type="text" name="conditionMin" placeholder="minimum"> to <input class="searchNum" type="text" name="conditionMax" placeholder="maximum"></pre> <br />
-			<input type="submit" value="Search"/>
+	<div class="createPane">
+		<h2>Enter the Following Information About Your Book</h2>
+		<form action="createListing" method="POST">
+			<pre>Title: <input class="createText" type="text" name="title"></pre> <br />
+			<pre>Author: <input class="createText" type="text" name="author"></pre> <br />
+			<pre>ISBN:  <input class="createText" type="text" name="isbn"></pre> <br />
+			<pre>Price: <input class="createNum" type="text" name="price"> </pre> <br />
+			<pre>Condition: <input class="createNum" type="text" name="condition"></pre> <br />
+			<pre>Additional Information: <input class="createText" type="text" name="addinfo"></pre> <br />
+			<input type="submit" value="Submit"/>
 		</form>
 		<hr>
+		<br>${message}
 	</div>
-	<div class="window">
-		<h2>Search Results</h2>
-		${requestScope["books"]}
-	</div>
+	
 </body>
 
 </html>
