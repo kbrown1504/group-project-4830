@@ -48,6 +48,26 @@ public class BookListing extends DataModel
 				);
 		return htmlStr;
 	}
+	public String getOrderHTML() {
+		String htmlStr = String.format(
+				"<div style=\"display:flex;position:relative;padding:10px;margin-bottom:10px;"
+				+ "border-radius:20px;box-shadow: 5px 5px 3px #aaaaaa;"
+				+ "border: 1px solid #aaaaaa\">"
+				+ "<img src=%s height=\"%s\">"
+				+ "<div style=\"display:inline-block;padding-left:10px;\">"
+				+ "<a style=\"font-size:1.5rem;font-weight:bold;\" href=\"book?id=%d\">%s</a>"
+				+ "<h2>$%.02f</h2>"
+				+ "<h3>Author: %s</h3>"
+				+ "<h3>ISBN: %d</h3>"
+				+ "</div>"
+				+ "<form style=\"position:absolute;right:20px;top:20px;\">"
+				+ "<input type=\"submit\" value=\"Remove from Cart\" method=\"POST\">"
+				+ "</form>"
+				+ "</div>",
+				"https://cdn-icons-png.flaticon.com/512/224/224641.png", "200", id, title, price, author, isbn
+				);
+		return htmlStr;
+	}
 	
 	public int getOrderID()
 	{

@@ -83,7 +83,7 @@ public class Cart extends HttpServlet {
 					String booksHtml = "";
 					Iterator<BookListing> bookItr = shoppingCart.iterator();
 					while (bookItr.hasNext()) {
-						booksHtml += bookItr.next().getCardHTML();
+						booksHtml += bookItr.next().getOrderHTML();
 					}
 					
 					request.setAttribute("books", booksHtml);
