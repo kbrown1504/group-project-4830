@@ -80,6 +80,8 @@ public class User extends HttpServlet {
 				RequestDispatcher view = request.getRequestDispatcher("WEB-INF/user.jsp");
 				view.forward(request, response);
 				
+				session.setAttribute("user", null);
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
