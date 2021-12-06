@@ -1,5 +1,9 @@
 package datamodels;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import javax.servlet.ServletContext;
 
 public class Order extends DataModel
 {
@@ -21,11 +25,26 @@ public class Order extends DataModel
 		return temp;
 	}
 	
-	//Return some kind of object that is html friendly format of data fields of this.object
-	public String getHTML()
+	//Return html friendly format of data fields of this object
+	//Servlet context is needed to pull books
+	public String getHTML(ArrayList<BookListing> books)
 	{
-		//TODO
-		return "";
+		String htmlStr = String.format(
+				"<div style=\"padding:10px;margin-bottom:10px;"
+				+ "border-radius:20px;box-shadow: 5px 5px 3px #aaaaaa;"
+				+ "border: 1px solid #aaaaaa\">"
+				+ "<h2>Order #%d</h2>",
+				this.getID()
+				);
+		
+		//Process Books from Order
+		Iterator<BookListing> bookItr = books.iterator();
+		while(bookItr.hasNext()) {
+			htmlStr += "<hr>" + bookItr.next().getPlacedOrderHTML();
+		}
+		
+		htmlStr += "</div>";
+		return htmlStr;
 	}	
 
 	//Get search statement to pull Book

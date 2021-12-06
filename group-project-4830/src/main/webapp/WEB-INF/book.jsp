@@ -84,7 +84,7 @@
 		<div class="priceCard">
 			<h1>$${requestScope["price"]}</h1>
 			<h2>Seller: <a href=${requestScope["sellerURL"]}>${requestScope["seller"]}</a></h2>
-			<form>
+			<form ${requestScope["hideButton"]}>
 				<input type="submit" value="Add to Cart" formmethod="POST">
 			</form>
 		</div>

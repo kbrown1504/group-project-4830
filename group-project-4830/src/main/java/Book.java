@@ -64,6 +64,10 @@ public class Book extends HttpServlet {
 				request.setAttribute("condition", book.getConditionStr());
 				request.setAttribute("info", book.getInfo());
 				
+				if (book.getOrderID() != 0) {
+					request.setAttribute("hideButton", "hidden");
+				}
+				
 				//Grab seller and set name
 				ResultSet sellerRs = DBConnection.getSeller(book.getSellerID());
 				Account seller = DataParser.parseAccount(sellerRs).get(0);
