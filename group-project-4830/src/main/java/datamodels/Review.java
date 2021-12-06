@@ -22,13 +22,6 @@ public class Review extends DataModel
 				+ "values (default, " + sellerID + ", " + buyerID + ", " + rating + ", '" + reviewText + "')");
 		return temp;
 	}
-
-	//Return some kind of object that is html friendly format of data fields of this.object
-	public String getHTML()
-	{
-		//Todo
-		return "";
-	}
 	
 	//Get search statement to pull seller
 	public PreparedStatement getSeller(Connection con) throws SQLException
