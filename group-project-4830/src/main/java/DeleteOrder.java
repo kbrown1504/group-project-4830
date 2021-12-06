@@ -47,6 +47,7 @@ public class DeleteOrder extends HttpServlet {
 			ResultSet rs = DBConnection.getOrderBooks(orderID);
 			ArrayList<BookListing> booksToModify = DataParser.parseBookListing(rs);
 			
+			//Set Order ID back to 0 so the books will show up in searches
 			DBConnection.updateBooks(booksToModify, 0);
 			
 			DBConnection.deleteOrder(orderID);
