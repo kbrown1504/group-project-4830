@@ -40,7 +40,7 @@ public class User extends HttpServlet {
 		
 		//https://stackoverflow.com/questions/38239554/java-web-servlet-writing-plain-text-on-an-existing-html-template-file
 		request.setAttribute("pageTitle", "My Account");
-		
+
 		//Check if a user is logged in
 		HttpSession session = request.getSession();
 		Account user = (Account)session.getAttribute("user");
@@ -68,7 +68,7 @@ public class User extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
+
 		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/user.jsp");
 		view.forward(request, response);
 	}

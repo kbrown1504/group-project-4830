@@ -44,7 +44,8 @@ public class Account extends DataModel
 	}
 	
 	public void removeBookFromCart(int idToRemove) {
-		//TODO: implement
+		boolean success = this.cartBookIDs.remove((Integer)idToRemove);
+		System.out.println("Success: " + success);
 	}
 	
 	public ArrayList<Integer> getCartIDs() {		
@@ -57,7 +58,12 @@ public class Account extends DataModel
 	public void setCart(ArrayList<BookListing> cart) {
 		this.cartBooks = cart;
 	}
-	
+	public void resetCarts() {
+		this.cartBookIDs = null;
+		this.cartBookIDs = new ArrayList<Integer>();
+		this.cartBooks = null;
+		this.cartBooks = new ArrayList<BookListing>();
+	}
 	
 	public String getUsername()
 	{
@@ -84,13 +90,9 @@ public class Account extends DataModel
 		return password;
 	}
 	
-	public void setPassoword(String pw)
+	public void setPassword(String pw)
 	{
 		password = pw;
 	}
 
-	public String toString()
-	{
-		return id + " " + username + " " + email + " " + password + "\n";
-	}
 }

@@ -16,16 +16,16 @@ public class Order extends DataModel
 	//Create mySQL statement from object
 	public PreparedStatement create(Connection con) throws SQLException
 	{
-		PreparedStatement temp = con.prepareStatement(" INSERT INTO Orders ( ID, BuyerID, ShippingAddress) "
-				+ "values (default, " + buyerID + " ," + shippingAddress + ")");
+		PreparedStatement temp = con.prepareStatement("INSERT INTO Orders (ID, BuyerID, ShippingAddress) "
+				+ "values (default, " + buyerID + ", '" + shippingAddress + "')");
 		return temp;
 	}
 	
 	//Return some kind of object that is html friendly format of data fields of this.object
 	public String getHTML()
 	{
-		String temp = "HTML or itemized return of Order object";
-		return temp;
+		//TODO
+		return "";
 	}	
 
 	//Get search statement to pull Book

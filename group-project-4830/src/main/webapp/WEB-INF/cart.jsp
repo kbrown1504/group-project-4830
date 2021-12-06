@@ -74,7 +74,7 @@
 		<pre>        Shipping: $${requestScope["shipping"]}</pre> <br />
 		<pre>      Final Cost: $${requestScope["finalCost"]}</pre> <br />
 		<hr>
-		<button onclick="window.location.href='OrderConfirmation'" style="height:50px;">Continue to Checkout</button>
+		<button ${requestScope["hideCheckout"]} onclick="window.location.href='OrderConfirmation'" style="height:50px;">Continue to Checkout</button>
 	</div>
 </body>
 
