@@ -51,7 +51,10 @@
 			border: 1px solid #aaaaaa;
 		}
 		.listings{
-           overflow:hidden;
+           	overflow:hidden;
+        }
+        .orders{
+        	overflow.hidden;
         }
 	</style>
 </head>
@@ -84,10 +87,14 @@
 		<hr>
         <h1>Email: ${requestScope["userEmail"]}</h1>
 		<hr>
+		<div class="orders">
+		    <h2>My Orders</h2>
+		</div>
 		<div class="listings">
 			<h2>My Listings</h2>
-			${requestScope["sellerBooks"]}
+			${requestScope["myListings"]}
 		</div>
+		<button onclick="window.location.href='Login'" style="height:50px;">Logout</button>
 	</div>
 </body>
 </html>
