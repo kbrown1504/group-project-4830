@@ -305,6 +305,46 @@ public class DBConnection {
 		return rs;
 	}
 	
+	public static int deleteOrder(int orderID) {
+		int rowsAffected = 0;
+		
+		String sql = "Delete from Orders where ID=" + orderID;
+		if (connection != null) {
+			try {
+				PreparedStatement prepState = connection.prepareStatement(sql);
+				try {
+					rowsAffected = prepState.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return rowsAffected;
+	}
+	
+	public static int deleteListing(int bookID) {
+		int rowsAffected = 0;
+		
+		String sql = "Delete from BookListing where ID=" + bookID;
+		if (connection != null) {
+			try {
+				PreparedStatement prepState = connection.prepareStatement(sql);
+				try {
+					rowsAffected = prepState.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return rowsAffected;
+	}
+	
 	static String getURL() {
 		return UtilProp.getProp("url");
 	}

@@ -85,7 +85,9 @@
                 
 		<h1 style="font-size:60px;">${requestScope["userName"]}</h1>
 		<hr>
-		<button style="float:right;height:4em;" onclick="window.location.href='login'" style="height:50px;">Logout</button>
+		<form method="POST">
+			<input type=submit style="float:right;height:4em;" value="Logout">
+		</form>
 		<h1>Username: ${requestScope["username"]}</h1>
         <h1>Email: ${requestScope["userEmail"]}</h1>
         <br><br><br><br><br>
