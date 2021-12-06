@@ -116,11 +116,13 @@ public class AdvancedSearch extends HttpServlet {
 			}
 			
 			selectSQL = "SELECT * FROM BookListing where OrderID=0 ".concat(selectSQL);
+			
 			preparedStatement = connection.prepareStatement(selectSQL);
 			for(int i = 0; i < input.size(); i++)
 			{
 				preparedStatement.setString(i + 1, input.get(i));
 			}
+			System.out.println(preparedStatement.toString());
 			ResultSet resultSet = preparedStatement.executeQuery();
 			ArrayList<BookListing> bookListingSet = DataParser.parseBookListing(resultSet);
 			String outHTML = "";

@@ -38,14 +38,13 @@ public class Account extends DataModel
 	public String addBookToCart(int idToAdd) {
 		if (!this.cartBookIDs.contains(idToAdd)) {
 			this.cartBookIDs.add(idToAdd);
-			return "Item addded to your cart!";
+			return "Item added to your cart!";
 		}
 		return "This item is already in your cart.";
 	}
 	
 	public void removeBookFromCart(int idToRemove) {
 		boolean success = this.cartBookIDs.remove((Integer)idToRemove);
-		System.out.println("Success: " + success);
 	}
 	
 	public ArrayList<Integer> getCartIDs() {		

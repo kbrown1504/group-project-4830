@@ -70,7 +70,20 @@
 			<pre>Title: <input class="searchText" type="text" name="title"> Author: <input class="searchText" type="text" name="author"></pre> <br />
 			<pre>ISBN:  <input class="searchText" type="text" name="isbn"></pre> <br />
 			<pre>Price: <input class="searchNum" type="text" name="priceMin" placeholder="minimum"> to <input class="searchNum" type="text" name="priceMax" placeholder="maximum"></pre> <br />
-			<pre>Condition: <input class="searchNum" type="text" name="conditionMin" placeholder="minimum"> to <input class="searchNum" type="text" name="conditionMax" placeholder="maximum"></pre> <br />
+			<pre>Condition (High to Low): <select name="conditionMax" id="conditionMax">
+								<option value="5">Like New</option>
+								<option value ="4">Very Good</option>
+								<option value ="3">Good</option>
+								<option value ="2">Average</option>
+								<option value ="1">Poor</option>
+							</select> to <select name="conditionMin" id="conditionMin">
+								<option value="5">Like New</option>
+								<option value ="4">Very Good</option>
+								<option value ="3">Good</option>
+								<option value ="2">Average</option>
+								<option value ="1">Poor</option>
+							</select>
+			</pre> <br/>
 			<input type="submit" value="Search"/>
 		</form>
 		<hr>

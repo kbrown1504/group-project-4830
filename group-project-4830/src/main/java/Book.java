@@ -64,7 +64,7 @@ public class Book extends HttpServlet {
 				request.setAttribute("condition", book.getConditionStr());
 				request.setAttribute("info", book.getInfo());
 				
-				if (book.getOrderID() != 0) {
+				if (book.getOrderID() != 0 || book.getSellerID() == user.getID()) {
 					request.setAttribute("hideButton", "hidden");
 				}
 				

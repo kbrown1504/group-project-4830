@@ -33,8 +33,12 @@ public class Order extends DataModel
 				"<div style=\"padding:10px;margin-bottom:10px;"
 				+ "border-radius:20px;box-shadow: 5px 5px 3px #aaaaaa;"
 				+ "border: 1px solid #aaaaaa\">"
+				+ "<form action=\"DeleteOrder\" method=\"POST\">"
+				+ "<input style=\"float:right;\" type=\"submit\" value=\"Cancel Order\">"
+				+ "<input hidden name=\"orderID\" value=%d>"
+				+ "</form>"
 				+ "<h2>Order #%d</h2>",
-				this.getID()
+				this.getID(), this.getID()
 				);
 		
 		//Process Books from Order
