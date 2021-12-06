@@ -48,7 +48,7 @@
 
 <body>
 	<nav class="appbar">
-		<h1 style="color:#ffffff; margin:10px;">BookWorms - ${requestScope["pageTitle"]}</h1>
+		<h1 style="color:#ffffff; margin:10px;">BookWorms - Log In</h1>
 	</nav>
 	<br>
 	<div class="window" style="text-align: center">
