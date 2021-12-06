@@ -93,21 +93,21 @@ public class OrderConfirmation extends HttpServlet {
 				}
 				else {
 					//Something went wrong with the update statements
-					System.out.println("DEBUG: Update of BookListings failed");
 					throw new SQLException("ERROR: Order placement unsuccessful");
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				request.setAttribute("message", "Order placement failed, please try again");
 			}
 			//TODO: Redirect to Page showing Placed Order?
-			response.sendRedirect("home");
+			response.sendRedirect("User");
 		}
 		//If insert fails, throw an error message.
 		else {
-			System.out.println("DEBUG: Insert of Order failed");
 			request.setAttribute("message", "Order placement failed, please try again");
 		}
+		doGet(request, response);
 	}
 
 }

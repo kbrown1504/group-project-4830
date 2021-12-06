@@ -267,7 +267,7 @@ public class DBConnection {
 	
 	public static ResultSet getOrders(int userID) {
 		ResultSet rs = null;
-		String sql = String.format("Select * from Orders where BuyerID=%d", userID);
+		String sql = String.format("Select * from Orders where BuyerID=%d ORDER BY ID DESC", userID);
 		
 		if (connection != null) {
 			try {
