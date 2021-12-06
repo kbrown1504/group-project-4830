@@ -39,6 +39,11 @@
 			margin-right:auto;
 			width:60%;
 		}
+		.reviewInputs {
+			vertical-align:top;
+			display:block;
+			margin-bottom: 10px;
+		}
 	</style>
 </head>
 
@@ -65,16 +70,22 @@
 		</div>
 	</nav>
 	<div class="window">
-		<form action="leaveReview" method="POST">
-			<select name="rating" id="rating">
+	<h2 style="color:red;">${requestScope["message"]}</h2>
+	<h2>Leave a Review for ${requestScope["sellerName"]}</h2>
+	<hr>
+		<form method="POST">
+			<input hidden name="sellerID" value=${requestScope["sellerID"]}>
+			<label for="rating">Rating:</label>
+			<select class="reviewInputs" name="rating" id="rating">
 				<option value = "1">1 star</option>
 				<option value = "2">2 stars</option>
 				<option value = "3">3 stars</option>
 				<option value = "4">4 stars</option>
 				<option value = "5">5 stars</option>
 			</select>
-			<input type="text" name="reviewText">
-			<input type="submit" value="Post Review">
+			<label for="reviewText">Review:</label>
+			<textarea class="reviewInputs" name="reviewText" rows="8" cols="80" placeholder="Enter Review..."></textarea>
+			<input class="reviewInputs" type="submit" value="Post Review">
 		</form>
 	</div>
 </body>

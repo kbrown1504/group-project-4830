@@ -71,7 +71,13 @@
 			<pre>Author: <input class="createText" type="text" name="author"></pre> <br />
 			<pre>ISBN:  <input class="createText" type="text" name="isbn"></pre> <br />
 			<pre>Price: <input class="createNum" type="text" name="price"> </pre> <br />
-			<pre>Condition: <input class="createNum" type="text" name="condition"></pre> <br />
+			<pre>Condition: <select name="condition" id="condition">
+								<option value="5">Like New</option>
+								<option value ="4">Very Good</option>
+								<option value ="3">Good</option>
+								<option value ="2">Average</option>
+								<option value ="1">Poor</option>
+							</select></pre> <br />
 			<pre>Additional Information: <input class="createText" type="text" name="addinfo"></pre> <br />
 			<input type="submit" value="Submit"/>
 		</form>

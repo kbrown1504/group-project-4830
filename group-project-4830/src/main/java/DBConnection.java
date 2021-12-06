@@ -172,6 +172,24 @@ public class DBConnection {
 		
 		return rs;
 	}
+	public static ResultSet getReview(int sellerID, int userID) {
+		ResultSet rs = null;
+		String sql = String.format("Select * from Reviews where SellerID=%s and BuyerID=%s", sellerID, userID);
+		
+		if (connection != null) {
+			try {
+				PreparedStatement prepState = connection.prepareStatement(sql);
+				try {
+					rs = prepState.executeQuery();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return rs;
+	}
 	
 	public static ResultSet getCart(ArrayList<Integer> ids) {
 		ResultSet rs = null;
@@ -236,6 +254,86 @@ public class DBConnection {
 				PreparedStatement prepState = connection.prepareStatement(sql);
 				try {
 					rowsAffected += prepState.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return rowsAffected;
+	}
+	
+	public static ResultSet getOrders(int userID) {
+		ResultSet rs = null;
+		String sql = String.format("Select * from Orders where BuyerID=%d ORDER BY ID DESC", userID);
+		
+		if (connection != null) {
+			try {
+				PreparedStatement prepState = connection.prepareStatement(sql);
+				try {
+					rs = prepState.executeQuery();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return rs;
+	}
+	
+	public static ResultSet getOrderBooks(int orderID) {
+		ResultSet rs = null;
+		String sql = String.format("Select * from BookListing where OrderID=%d", orderID);
+		
+		if (connection != null) {
+			try {
+				PreparedStatement prepState = connection.prepareStatement(sql);
+				try {
+					rs = prepState.executeQuery();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return rs;
+	}
+	
+	public static int deleteOrder(int orderID) {
+		int rowsAffected = 0;
+		
+		String sql = "Delete from Orders where ID=" + orderID;
+		if (connection != null) {
+			try {
+				PreparedStatement prepState = connection.prepareStatement(sql);
+				try {
+					rowsAffected = prepState.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return rowsAffected;
+	}
+	
+	public static int deleteListing(int bookID) {
+		int rowsAffected = 0;
+		
+		String sql = "Delete from BookListing where ID=" + bookID;
+		if (connection != null) {
+			try {
+				PreparedStatement prepState = connection.prepareStatement(sql);
+				try {
+					rowsAffected = prepState.executeUpdate();
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}				

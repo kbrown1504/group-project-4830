@@ -90,25 +90,23 @@ public class OrderConfirmation extends HttpServlet {
 				if (rowsAffected == user.getCart().size()) {
 					//Updates worked. Successful Order Placement. Reset Cart
 					user.resetCarts();
+					response.sendRedirect("User");
 				}
 				else {
 					//Something went wrong with the update statements
-					System.out.println("DEBUG: Update of BookListings failed");
 					throw new SQLException("ERROR: Order placement unsuccessful");
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				request.setAttribute("message", "Order placement failed, please try again");
+				doGet(request, response);
 			}
-			//TODO: Redirect to Page showing Placed Order?
-			response.sendRedirect("home");
 		}
 		//If insert fails, throw an error message.
 		else {
-			System.out.println("DEBUG: Insert of Order failed");
 			request.setAttribute("message", "Order placement failed, please try again");
-			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/orderConfirmation.jsp");
-			view.forward(request, response);
+			doGet(request, response);
 		}
 	}
 

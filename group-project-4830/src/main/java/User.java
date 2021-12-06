@@ -1,6 +1,8 @@
-
-
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +14,8 @@ import javax.servlet.http.HttpSession;
 
 import datamodels.Account;
 import datamodels.BookListing;
+import datamodels.DataParser;
+import datamodels.Order;
 
 /**
  * Servlet implementation class User
@@ -35,13 +39,7 @@ public class User extends HttpServlet {
 		
 		//https://stackoverflow.com/questions/38239554/java-web-servlet-writing-plain-text-on-an-existing-html-template-file
 		request.setAttribute("pageTitle", "My Account");
-		
-		String i = request.getParameter("id");
-		int id = Integer.parseInt(i);
-		
-		RequestDispatcher view = request.getRequestDispatcher("user.jsp");
-		view.forward(request, response);
-		
+
 		//Check if a user is logged in
 		HttpSession session = request.getSession();
 		Account user = (Account)session.getAttribute("user");
@@ -50,26 +48,52 @@ public class User extends HttpServlet {
 			response.sendRedirect("login");
 		} 
 		else {
-			i = request.getParameter("id");
-			id = Integer.parseInt(i);
+			DBConnection.getDBConnection(this.getServletContext());
 			
-			//Placeholder Info until db connects listings
-			BookListing test11 = new BookListing(0, -1, "Software Engineering", "Ian Sommerville", 9781292096131L, 40.00, 0, 1, "test info");
-			request.setAttribute("userBooks", test11.getCardHTML());
-			request.setAttribute("userName", "John Doe");
-			
-			view = request.getRequestDispatcher("WEB-INF/user.jsp");
-			view.forward(request, response);
+			try {
+				//get my orders
+				ResultSet orderRs = DBConnection.getOrders(user.getID());
+				ArrayList<Order> orders = DataParser.parseOrder(orderRs);
+				String ordersHTML = "";
+				Iterator<Order> orderItr = orders.iterator();
+				while(orderItr.hasNext()) {
+					Order order = orderItr.next();
+					ArrayList<BookListing> booksInOrder = DataParser.parseBookListing(DBConnection.getOrderBooks(order.getID()));
+					ordersHTML += order.getHTML(booksInOrder);
+				}
+				request.setAttribute("orders", ordersHTML);
+				
+				//get myListings
+				ResultSet booksRs = DBConnection.getSellerBooks(user.getID());
+				ArrayList<BookListing> sellerBooks;
+				sellerBooks = DataParser.parseBookListing(booksRs);
+				String booksHTML = "";
+				Iterator<BookListing> bookItr = sellerBooks.iterator();
+				while (bookItr.hasNext()) {
+					booksHTML += bookItr.next().getMyListingHTML();
+				}
+				request.setAttribute("myListings", booksHTML);
+				
+				request.setAttribute("username", user.getUsername());				
+				request.setAttribute("userEmail", user.getEmail());
+				
+				RequestDispatcher view = request.getRequestDispatcher("WEB-INF/user.jsp");
+				view.forward(request, response);
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		int placeholder = id;
-		System.out.println(placeholder);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		HttpSession session = request.getSession();
+		session.setAttribute("user", null);
+		response.sendRedirect("login");
 	}
 
 }

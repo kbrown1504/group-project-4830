@@ -48,6 +48,32 @@ public class BookListing extends DataModel
 				);
 		return htmlStr;
 	}
+	//Display of data for a listing that belongs to the user
+	//Option to delete listing will be available
+	public String getMyListingHTML()
+	{
+		String htmlStr = String.format(
+				"<div style=\"display:flex;position:relative;padding:10px;margin-bottom:10px;"
+				+ "border-radius:20px;box-shadow: 5px 5px 3px #aaaaaa;"
+				+ "border: 1px solid #aaaaaa\">"
+				+ "<img src=%s height=\"%s\">"
+				+ "<div style=\"display:inline-block;padding-left:10px;\">"
+				+ "<a style=\"font-size:1.5rem;font-weight:bold;\" href=\"book?id=%d\">%s</a>"
+				+ "<h2>$%.02f</h2>"
+				+ "<h3>Author: %s</h3>"
+				+ "<h3>ISBN: %d</h3>"
+				+ "</div>"
+				+ "<form action=\"DeleteListing\" method=\"POST\" style=\"position:absolute;right:20px;top:20px;\">"
+				+ "<input hidden type=\"number\" name=\"id\" value=%d>"
+				+ "<input type=\"submit\" value=\"Delete Listing\">"
+				+ "</form>"
+				+ "</div>",
+				"https://cdn-icons-png.flaticon.com/512/224/224641.png", "200", id, title, price, author, isbn, id
+				);
+		return htmlStr;
+	}
+	//Display option for when the book is displayed as part of an order that is being placed
+	//This is how the book will be displayed while in the cart. It has the option to remove the book from cart.
 	public String getOrderHTML() {
 		String htmlStr = String.format(
 				"<div style=\"display:flex;position:relative;padding:10px;margin-bottom:10px;"
@@ -64,6 +90,22 @@ public class BookListing extends DataModel
 				+ "<input hidden type=\"number\" name=\"id\" value=%d>"
 				+ "<input type=\"submit\" value=\"Remove from Cart\">"
 				+ "</form>"
+				+ "</div>",
+				"https://cdn-icons-png.flaticon.com/512/224/224641.png", "200", id, title, price, author, isbn, id
+				);
+		return htmlStr;
+	}
+	//Display option for when book is part of a placed order
+	public String getPlacedOrderHTML() {
+		String htmlStr = String.format(
+				"<div style=\"display:flex;position:relative;padding:10px;margin-bottom:10px;\">"
+				+ "<img src=%s height=\"%s\">"
+				+ "<div style=\"display:inline-block;padding-left:10px;\">"
+				+ "<a style=\"font-size:1.5rem;font-weight:bold;\" href=\"book?id=%d\">%s</a>"
+				+ "<h2>$%.02f</h2>"
+				+ "<h3>Author: %s</h3>"
+				+ "<h3>ISBN: %d</h3>"
+				+ "</div>"
 				+ "</div>",
 				"https://cdn-icons-png.flaticon.com/512/224/224641.png", "200", id, title, price, author, isbn, id
 				);
