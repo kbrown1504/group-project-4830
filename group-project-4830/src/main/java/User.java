@@ -1,6 +1,10 @@
 
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import datamodels.Account;
 import datamodels.BookListing;
+import datamodels.DataParser;
 
 /**
  * Servlet implementation class User
@@ -35,13 +40,7 @@ public class User extends HttpServlet {
 		
 		//https://stackoverflow.com/questions/38239554/java-web-servlet-writing-plain-text-on-an-existing-html-template-file
 		request.setAttribute("pageTitle", "My Account");
-		
-		String i = request.getParameter("id");
-		int id = Integer.parseInt(i);
-		
-		RequestDispatcher view = request.getRequestDispatcher("user.jsp");
-		view.forward(request, response);
-		
+
 		//Check if a user is logged in
 		HttpSession session = request.getSession();
 		Account user = (Account)session.getAttribute("user");
@@ -50,19 +49,28 @@ public class User extends HttpServlet {
 			response.sendRedirect("login");
 		} 
 		else {
-			i = request.getParameter("id");
-			id = Integer.parseInt(i);
 			
-			//Placeholder Info until db connects listings
-			BookListing test11 = new BookListing(0, -1, "Software Engineering", "Ian Sommerville", 9781292096131L, 40.00, 0, 1, "test info");
-			request.setAttribute("userBooks", test11.getCardHTML());
-			request.setAttribute("userName", "John Doe");
+			DBConnection.getDBConnection(this.getServletContext());
 			
-			view = request.getRequestDispatcher("WEB-INF/user.jsp");
-			view.forward(request, response);
+			try {
+				//get myListings
+				ResultSet booksRs = DBConnection.getSellerBooks(user.getID());
+				ArrayList<BookListing> sellerBooks;
+				sellerBooks = DataParser.parseBookListing(booksRs);
+				String booksHTML = "";
+				Iterator<BookListing> bookItr = sellerBooks.iterator();
+				while (bookItr.hasNext()) {
+					booksHTML += bookItr.next().getCardHTML();
+				}
+				request.setAttribute("myListings", booksHTML);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		int placeholder = id;
-		System.out.println(placeholder);
+
+		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/user.jsp");
+		view.forward(request, response);
 	}
 
 	/**
