@@ -81,11 +81,11 @@
 		</div>
 	</nav>
 	<div class="window">
-                <img src="https://pbs.twimg.com/profile_images/1450689526863704066/6xFTUTxk_400x400.jpg" height=200 style="float:left;border:5px solid slateblue;margin-right:10px;">
+                <img src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" height=200 style="float:left;margin-right:10px;">
                 
 		<h1 style="font-size:60px;">${requestScope["userName"]}</h1>
 		<hr>
-		<button style="float:right;height:4em;" onclick="window.location.href='Login'" style="height:50px;">Logout</button>
+		<button style="float:right;height:4em;" onclick="window.location.href='login'" style="height:50px;">Logout</button>
 		<h1>Username: ${requestScope["username"]}</h1>
         <h1>Email: ${requestScope["userEmail"]}</h1>
         <br><br><br><br><br>
