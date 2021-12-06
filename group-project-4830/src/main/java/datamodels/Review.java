@@ -42,7 +42,24 @@ public class Review extends DataModel
 	{
 		PreparedStatement temp = con.prepareStatement(" SELECT * FROM Account WHERE ID = \"" + buyerID + "\";")	;
 		return temp;
-	}		
+	}
+	
+	//Return a html card with review info
+		public String getCardHTML()
+		{
+			String htmlStr = String.format(
+				"<div style=\"display:flex;position:relative;padding:10px;margin-bottom:10px;"
+				+ "border-radius:20px;box-shadow: 5px 5px 3px #aaaaaa;"
+				+ "border: 1px solid #aaaaaa\">"
+				+ "<div style=\"display:inline-block;padding-left:10px;\">"
+				+ "<h3>Rating: %d Stars</h3>"
+				+ "<p>%s</p>"
+				+ "</div>"
+				+ "</div>",
+				rating, reviewText
+			);
+			return htmlStr;
+		}
 	
 	public int getSellerID()
 	{
