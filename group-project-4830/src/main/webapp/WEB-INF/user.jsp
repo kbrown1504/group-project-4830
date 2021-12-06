@@ -85,16 +85,22 @@
                 
 		<h1 style="font-size:60px;">${requestScope["userName"]}</h1>
 		<hr>
+		<button style="float:right;height:4em;" onclick="window.location.href='Login'" style="height:50px;">Logout</button>
+		<h1>Username: ${requestScope["username"]}</h1>
         <h1>Email: ${requestScope["userEmail"]}</h1>
+        <br><br><br><br><br>
 		<hr>
 		<div class="orders">
 		    <h2>My Orders</h2>
+		    <div>
+		    	${requestScope["orders"]}
+		    </div>
 		</div>
+		<hr>
 		<div class="listings">
 			<h2>My Listings</h2>
 			${requestScope["myListings"]}
 		</div>
-		<button onclick="window.location.href='Login'" style="height:50px;">Logout</button>
 	</div>
 </body>
 </html>

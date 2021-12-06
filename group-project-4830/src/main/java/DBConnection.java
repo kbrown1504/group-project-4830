@@ -265,6 +265,46 @@ public class DBConnection {
 		return rowsAffected;
 	}
 	
+	public static ResultSet getOrders(int userID) {
+		ResultSet rs = null;
+		String sql = String.format("Select * from Orders where BuyerID=%d", userID);
+		
+		if (connection != null) {
+			try {
+				PreparedStatement prepState = connection.prepareStatement(sql);
+				try {
+					rs = prepState.executeQuery();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return rs;
+	}
+	
+	public static ResultSet getOrderBooks(int orderID) {
+		ResultSet rs = null;
+		String sql = String.format("Select * from BookListing where OrderID=%d", orderID);
+		
+		if (connection != null) {
+			try {
+				PreparedStatement prepState = connection.prepareStatement(sql);
+				try {
+					rs = prepState.executeQuery();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return rs;
+	}
+	
 	static String getURL() {
 		return UtilProp.getProp("url");
 	}
