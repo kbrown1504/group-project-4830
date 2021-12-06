@@ -53,6 +53,7 @@ public class Seller extends HttpServlet {
 		
 			String i = request.getParameter("id");
 			int id = Integer.parseInt(i);
+			request.setAttribute("reviewUrl", "leaveReview?forSeller=" + id);
 			
 			DBConnection.getDBConnection(this.getServletContext());
 			//Grab seller and set name

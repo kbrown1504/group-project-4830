@@ -172,6 +172,24 @@ public class DBConnection {
 		
 		return rs;
 	}
+	public static ResultSet getReview(int sellerID, int userID) {
+		ResultSet rs = null;
+		String sql = String.format("Select * from Reviews where SellerID=%s and BuyerID=%s", sellerID, userID);
+		
+		if (connection != null) {
+			try {
+				PreparedStatement prepState = connection.prepareStatement(sql);
+				try {
+					rs = prepState.executeQuery();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return rs;
+	}
 	
 	public static ResultSet getCart(ArrayList<Integer> ids) {
 		ResultSet rs = null;

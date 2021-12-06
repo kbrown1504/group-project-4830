@@ -82,6 +82,7 @@
                 <img src="https://pbs.twimg.com/profile_images/1450689526863704066/6xFTUTxk_400x400.jpg" height=200 style="float:left;border:5px solid slateblue;margin-right:10px;">
                 
 		<h1>${requestScope["sellerName"]}</h1>
+		<button onclick="window.location.href='${requestScope["reviewUrl"]}'">Leave a Review</button>
 		<hr>
 		<div>
 			<h2>Reviews</h2>

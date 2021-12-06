@@ -19,7 +19,7 @@ public class Review extends DataModel
 	public PreparedStatement create(Connection con) throws SQLException
 	{
 		PreparedStatement temp = con.prepareStatement(" INSERT INTO Reviews ( ID, SellerID, BuyerID, Rating, ReviewText) "
-				+ "values (default, " + sellerID + " ," + buyerID + " ," + rating + " ," + reviewText + ")");
+				+ "values (default, " + sellerID + ", " + buyerID + ", " + rating + ", '" + reviewText + "')");
 		return temp;
 	}
 
