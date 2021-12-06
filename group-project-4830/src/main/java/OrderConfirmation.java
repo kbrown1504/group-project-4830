@@ -90,6 +90,7 @@ public class OrderConfirmation extends HttpServlet {
 				if (rowsAffected == user.getCart().size()) {
 					//Updates worked. Successful Order Placement. Reset Cart
 					user.resetCarts();
+					response.sendRedirect("User");
 				}
 				else {
 					//Something went wrong with the update statements
@@ -99,15 +100,14 @@ public class OrderConfirmation extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				request.setAttribute("message", "Order placement failed, please try again");
+				doGet(request, response);
 			}
-			//TODO: Redirect to Page showing Placed Order?
-			response.sendRedirect("User");
 		}
 		//If insert fails, throw an error message.
 		else {
 			request.setAttribute("message", "Order placement failed, please try again");
+			doGet(request, response);
 		}
-		doGet(request, response);
 	}
 
 }
