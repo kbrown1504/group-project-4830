@@ -70,7 +70,7 @@
 			<h2>Shipping/Billing Address</h2>
 			<pre>Full Name: <input class="searchText" type="text" name="fullName"></pre> <br />
 			<pre>Street Address: <input class="searchText" type="text" name="streetAddress"> City: <input class="searchText" type="text" name="city"></pre> <br />
-			<pre>State: <input class="searchText" type="text" name="state"> Zip Code: <input class="searchText" type="text" name="zipcode"></pre> <br />
+			<pre>State: <input class="searchText" type="text" name="state"> Zip Code: <input class="searchText" type="text" name="zipCode"></pre> <br />
 			<hr>
 			<h2>Payment Info</h2>
 			<pre>Card Number: <input class="searchText" type="text" name="cardNumber"></pre> <br />

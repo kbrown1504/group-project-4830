@@ -122,7 +122,6 @@ public class AdvancedSearch extends HttpServlet {
 			{
 				preparedStatement.setString(i + 1, input.get(i));
 			}
-			System.out.println(preparedStatement.toString());
 			ResultSet resultSet = preparedStatement.executeQuery();
 			ArrayList<BookListing> bookListingSet = DataParser.parseBookListing(resultSet);
 			String outHTML = "";
